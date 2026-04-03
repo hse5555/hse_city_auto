@@ -5,7 +5,7 @@ from requests.auth import HTTPBasicAuth
 USER = os.getenv('WP_USERNAME', 'hsemse7707')
 PASS = os.getenv('WP_PASSWORD')
 URL = os.getenv('WP_URL')
-POST_ID = "11" # الرقم الذي يظهر في لوحة تحكم ووردبريس لهذه الصفحة
+POST_ID = "9" # الرقم الذي يظهر في لوحة تحكم ووردبريس لهذه الصفحة
 
 def deploy_pure_dashboard():
     # قراءة الملف الذي نقلناه للتو
