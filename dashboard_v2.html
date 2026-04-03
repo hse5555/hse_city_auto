@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="midnight" data-lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>بصمة رقمية v2 | سوق المعدات الثقيلة — مصر</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=IBM+Plex+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ═══════════════════════════════════════════
+   THEME SYSTEM — 4 themes via CSS variables
+═══════════════════════════════════════════ */
+:root{--sw:268px;--th:58px;--r:14px;--rs:9px;--tr:.22s cubic-bezier(.4,0,.2,1);--ts:.45s cubic-bezier(.4,0,.2,1)}
+
+[data-theme=midnight]{--bg:#070d1a;--bg2:#0d1525;--bgc:#111827;--bgc2:#192236;--bgc3:#0e1a2d;
+  --p:#2563eb;--pl:#3b82f6;--pd:#1d4ed8;--s:#10b981;--sl:#34d399;--a:#f59e0b;--al:#fbbf24;
+  --rd:#ef4444;--rl:#f87171;--pu:#8b5cf6;--cy:#06b6d4;
+  --br:rgba(37,99,235,.16);--brs:rgba(37,99,235,.38);--tx:#f1f5f9;--txm:#94a3b8;--txd:#475569;
+  --gp:0 0 40px rgba(37,99,235,.28);--sh:0 4px 24px rgba(0,0,0,.5);
+  --mesh:radial-gradient(ellipse 900px 600px at 8% 15%,rgba(37,99,235,.09) 0%,transparent 65%),radial-gradient(ellipse 700px 500px at 88% 78%,rgba(16,185,129,.06) 0%,transparent 65%),radial-gradient(ellipse 400px 300px at 50% 50%,rgba(6,182,212,.04) 0%,transparent 70%);
+  --sb:rgba(9,16,32,.98);--pt:rgba(255,255,255,.05);--ov:rgba(7,13,26,.88);--tg:rgba(37,99,235,.12);--tgt:#60a5fa}
+
+[data-theme=desert]{--bg:#0c0804;--bg2:#160f06;--bgc:#1c1408;--bgc2:#231a0c;--bgc3:#130b03;
+  --p:#d97706;--pl:#f59e0b;--pd:#b45309;--s:#65a30d;--sl:#84cc16;--a:#dc2626;--al:#ef4444;
+  --rd:#dc2626;--rl:#f87171;--pu:#c084fc;--cy:#38bdf8;
+  --br:rgba(217,119,6,.18);--brs:rgba(217,119,6,.42);--tx:#fef3c7;--txm:#c9a05a;--txd:#7a5920;
+  --gp:0 0 40px rgba(217,119,6,.32);--sh:0 4px 24px rgba(0,0,0,.6);
+  --mesh:radial-gradient(ellipse 900px 600px at 15% 20%,rgba(217,119,6,.1) 0%,transparent 65%),radial-gradient(ellipse 600px 400px at 82% 72%,rgba(101,163,13,.07) 0%,transparent 65%);
+  --sb:rgba(10,7,2,.98);--pt:rgba(255,255,255,.05);--ov:rgba(12,8,4,.88);--tg:rgba(217,119,6,.15);--tgt:#fbbf24}
+
+[data-theme=emerald]{--bg:#020e07;--bg2:#051a0e;--bgc:#091a11;--bgc2:#0f2419;--bgc3:#041208;
+  --p:#059669;--pl:#10b981;--pd:#047857;--s:#0ea5e9;--sl:#38bdf8;--a:#f59e0b;--al:#fbbf24;
+  --rd:#ef4444;--rl:#f87171;--pu:#a78bfa;--cy:#22d3ee;
+  --br:rgba(5,150,105,.18);--brs:rgba(5,150,105,.42);--tx:#ecfdf5;--txm:#6ee7b7;--txd:#2d6b50;
+  --gp:0 0 40px rgba(5,150,105,.32);--sh:0 4px 24px rgba(0,0,0,.5);
+  --mesh:radial-gradient(ellipse 900px 600px at 12% 18%,rgba(5,150,105,.1) 0%,transparent 65%),radial-gradient(ellipse 600px 400px at 85% 75%,rgba(14,165,233,.07) 0%,transparent 65%);
+  --sb:rgba(1,8,4,.98);--pt:rgba(255,255,255,.05);--ov:rgba(2,14,7,.88);--tg:rgba(5,150,105,.14);--tgt:#34d399}
+
+[data-theme=arctic]{--bg:#eef2f7;--bg2:#e2e8f0;--bgc:#fff;--bgc2:#f8fafc;--bgc3:#f1f5f9;
+  --p:#1d4ed8;--pl:#2563eb;--pd:#1e3a8a;--s:#059669;--sl:#10b981;--a:#d97706;--al:#f59e0b;
+  --rd:#dc2626;--rl:#ef4444;--pu:#6d28d9;--cy:#0284c7;
+  --br:rgba(37,99,235,.11);--brs:rgba(37,99,235,.28);--tx:#0f172a;--txm:#475569;--txd:#94a3b8;
+  --gp:0 4px 20px rgba(37,99,235,.13);--sh:0 2px 16px rgba(0,0,0,.09);
+  --mesh:radial-gradient(ellipse 900px 600px at 8% 15%,rgba(37,99,235,.05) 0%,transparent 65%),radial-gradient(ellipse 600px 400px at 88% 80%,rgba(5,150,105,.04) 0%,transparent 65%);
+  --sb:rgba(248,250,252,.98);--pt:rgba(0,0,0,.05);--ov:rgba(238,242,247,.92);--tg:rgba(37,99,235,.08);--tgt:#1d4ed8}
+
+/* ═══════════════════════════════════════════
+   BASE RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;transition:background var(--ts),color var(--ts)}
+[data-lang=en] body,[data-lang=de] body{font-family:'IBM Plex Sans','Cairo',sans-serif}
+body::before{content:'';position:fixed;inset:0;z-index:0;background:var(--mesh);pointer-events:none;transition:background var(--ts)}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;outline:none;background:none}
+input,select,textarea{font-family:inherit;outline:none;border:none}
+::-webkit-scrollbar{width:5px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--br);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:var(--brs)}
+
+/* LTR override */
+[data-lang=en],[data-lang=de]{direction:ltr}
+[data-lang=en] .sidebar,[data-lang=de] .sidebar{right:auto;left:0;border-left:none;border-right:1px solid var(--br)}
+[data-lang=en] .main,[data-lang=de] .main{margin-right:0;margin-left:var(--sw)}
+[data-lang=en] .nav-badge,[data-lang=de] .nav-badge{margin-right:0;margin-left:auto}
+[data-lang=en] .kpi-change,[data-lang=de] .kpi-change{flex-direction:row}
+[data-lang=en] .topbar-mob,[data-lang=de] .topbar-mob{flex-direction:row}
+
+/* ═══════════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════════ */
+.sidebar{position:fixed;top:0;right:0;bottom:0;width:var(--sw);background:var(--sb);border-left:1px solid var(--br);z-index:300;display:flex;flex-direction:column;backdrop-filter:blur(16px);transition:transform var(--ts),background var(--ts),border-color var(--ts)}
+.sb-inner{display:flex;flex-direction:column;height:100%;overflow-y:auto;overflow-x:hidden}
+.sb-inner::-webkit-scrollbar{width:3px}
+
+.sb-logo{padding:16px 14px 12px;border-bottom:1px solid var(--br);flex-shrink:0}
+.sb-logo-wrap{display:flex;align-items:center;gap:10px}
+.sb-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--p),var(--cy));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--gp);flex-shrink:0}
+.sb-brand{font-size:13.5px;font-weight:800;color:var(--tx)}
+.sb-sub{font-size:10px;color:var(--txm);font-weight:300;margin-top:1px}
+
+.sb-sec{padding:10px 10px 2px}
+.sb-sec-title{font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--txd);text-transform:uppercase;padding:0 6px 6px;display:block}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:var(--rs);cursor:pointer;transition:all var(--tr);font-size:12.5px;font-weight:500;color:var(--txm);margin-bottom:1px;border:1px solid transparent;text-decoration:none}
+.nav-item:hover{background:var(--tg);color:var(--tx)}
+.nav-item.active{background:var(--tg);color:var(--tx);border-color:var(--brs)}
+.nav-item .ni{font-size:15px;width:19px;text-align:center;flex-shrink:0}
+.nav-badge{margin-right:auto;font-size:9.5px;font-weight:700;padding:2px 6px;border-radius:20px;background:var(--p);color:#fff}
+.nav-badge.g{background:var(--s)}.nav-badge.o{background:var(--a);color:#000}
+
+/* Theme grid */
+.sb-themes{padding:8px 10px 5px;border-top:1px solid var(--br)}
+.sb-themes-title{font-size:9px;font-weight:700;letter-spacing:1.2px;color:var(--txd);text-transform:uppercase;padding:0 6px 7px;display:block}
+.theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:0 2px}
+.theme-btn{padding:6px 3px;border-radius:8px;cursor:pointer;border:1.5px solid var(--br);background:var(--bgc2);color:var(--txm);font-size:10.5px;font-family:inherit;font-weight:600;text-align:center;transition:all var(--tr);display:flex;flex-direction:column;align-items:center;gap:4px}
+.theme-btn:hover{border-color:var(--brs);color:var(--tx);transform:translateY(-1px)}
+.theme-btn.active{border-color:var(--p);color:var(--pl);background:var(--tg)}
+.theme-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.12)}
+
+/* Language switcher */
+.sb-langs{padding:6px 10px 8px;border-top:1px solid var(--br)}
+.lang-row{display:flex;gap:4px;padding:0 2px}
+.lang-btn{flex:1;padding:6px 3px;border-radius:8px;cursor:pointer;border:1.5px solid var(--br);background:var(--bgc2);color:var(--txm);font-size:11.5px;font-family:inherit;font-weight:700;text-align:center;transition:all var(--tr)}
+.lang-btn:hover{border-color:var(--brs);color:var(--tx)}
+.lang-btn.active{border-color:var(--p);color:var(--pl);background:var(--tg)}
+
+/* Footer */
+.sb-footer{padding:10px 12px;border-top:1px solid var(--br);flex-shrink:0;margin-top:auto}
+.live-pill{display:flex;align-items:center;gap:7px;background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.22);border-radius:7px;padding:6px 10px;font-size:11px;color:var(--sl)}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--sl);animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.5)}}
+
+/* ═══════════════════════════════════════════
+   MOBILE TOPBAR
+═══════════════════════════════════════════ */
+.topbar-mob{display:none;position:fixed;top:0;left:0;right:0;height:var(--th);background:var(--sb);border-bottom:1px solid var(--br);z-index:250;align-items:center;padding:0 14px;gap:10px;backdrop-filter:blur(12px)}
+.mob-logo{display:flex;align-items:center;gap:8px;flex:1}
+.mob-logo .mi{width:28px;height:28px;background:linear-gradient(135deg,var(--p),var(--cy));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.mob-logo span{font-size:13.5px;font-weight:800}
+.icon-btn{background:var(--bgc2);border:1.5px solid var(--br);color:var(--txm);width:34px;height:34px;border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all var(--tr);flex-shrink:0}
+.icon-btn:hover{color:var(--tx);border-color:var(--brs)}
+.mob-overlay{display:none;position:fixed;inset:0;background:var(--ov);z-index:299;backdrop-filter:blur(2px)}
+
+/* ═══════════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════════ */
+.main{margin-right:var(--sw);min-height:100vh;position:relative;z-index:1;transition:margin var(--ts)}
+.ph{padding:22px 26px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.ph-title{font-size:20px;font-weight:900;line-height:1.2}
+.ph-sub{font-size:12px;color:var(--txm);margin-top:3px}
+.ph-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.meta-pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--txm);background:var(--bgc2);border:1px solid var(--br);border-radius:20px;padding:3px 10px}
+.meta-pill strong{color:var(--pl)}
+.ph-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+
+/* Buttons */
+.btn{padding:7px 15px;border-radius:var(--rs);font-size:12px;font-weight:700;cursor:pointer;transition:all var(--tr);display:inline-flex;align-items:center;gap:5px;font-family:inherit;border:none}
+.btn-p{background:linear-gradient(135deg,var(--p),var(--cy));color:#fff;box-shadow:var(--gp)}
+.btn-p:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.btn-g{background:transparent;border:1.5px solid var(--br);color:var(--txm)}
+.btn-g:hover{border-color:var(--brs);color:var(--tx)}
+.btn-sm{padding:5px 11px;font-size:11px}
+
+/* ═══════════════════════════════════════════
+   GLOBAL SEARCH (Spotlight)
+═══════════════════════════════════════════ */
+.gsearch-wrap{padding:14px 26px 0}
+.gsearch-bar{display:flex;align-items:center;gap:9px;background:var(--bgc);border:1.5px solid var(--br);border-radius:11px;padding:9px 14px;transition:border-color var(--tr);cursor:text}
+.gsearch-bar:focus-within{border-color:var(--brs);box-shadow:var(--gp)}
+.gsearch-bar input{flex:1;background:transparent;color:var(--tx);font-size:13px;caret-color:var(--pl);font-family:inherit}
+.gsearch-bar input::placeholder{color:var(--txd)}
+.gsearch-bar .kbd{background:var(--bgc2);border:1px solid var(--br);border-radius:4px;padding:2px 6px;font-size:10px;color:var(--txd);font-family:'IBM Plex Mono',monospace;flex-shrink:0}
+
+/* Spotlight overlay */
+.spotlight{position:fixed;inset:0;z-index:500;display:none;align-items:flex-start;justify-content:center;padding-top:72px}
+.spotlight.open{display:flex}
+.sp-bg{position:absolute;inset:0;background:var(--ov)}
+.sp-box{position:relative;z-index:1;width:min(620px,94vw);background:var(--bgc);border:1.5px solid var(--brs);border-radius:16px;overflow:hidden;box-shadow:var(--sh)}
+.sp-inp{display:flex;align-items:center;gap:11px;padding:13px 16px;border-bottom:1px solid var(--br)}
+.sp-inp input{flex:1;background:transparent;color:var(--tx);font-size:15px;caret-color:var(--pl);font-family:inherit}
+.sp-inp input::placeholder{color:var(--txd)}
+.sp-list{max-height:360px;overflow-y:auto}
+.sp-item{display:flex;align-items:center;gap:11px;padding:10px 16px;cursor:pointer;border-bottom:1px solid var(--br);transition:background var(--tr)}
+.sp-item:hover,.sp-item.hi{background:var(--tg)}
+.sp-item:last-child{border-bottom:none}
+.sp-icon{font-size:17px;width:26px;text-align:center;flex-shrink:0}
+.sp-info{flex:1}
+.sp-name{font-size:13px;font-weight:600;color:var(--tx)}
+.sp-sub{font-size:11px;color:var(--txm)}
+.sp-cat{margin-left:auto;font-size:10px;color:var(--txd);background:var(--bgc2);border:1px solid var(--br);border-radius:4px;padding:2px 6px;white-space:nowrap;flex-shrink:0}
+[data-lang=ar] .sp-cat{margin-left:0;margin-right:auto}
+.sp-empty{padding:28px;text-align:center;color:var(--txd);font-size:13px}
+
+/* ═══════════════════════════════════════════
+   PAGE TABS
+═══════════════════════════════════════════ */
+.page-tabs{padding:18px 26px 0;display:flex;gap:5px;border-bottom:1px solid var(--br);overflow-x:auto}
+.page-tabs::-webkit-scrollbar{height:0}
+.ptab{padding:8px 16px;border-radius:var(--rs) var(--rs) 0 0;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--txm);background:transparent;border:1px solid transparent;border-bottom:none;transition:all var(--tr);white-space:nowrap;display:flex;align-items:center;gap:6px}
+.ptab:hover{color:var(--tx);background:var(--tg)}
+.ptab.active{color:var(--pl);background:var(--bgc);border-color:var(--brs)}
+.ptab-badge{font-size:9.5px;background:var(--p);color:#fff;padding:1px 5px;border-radius:10px;font-weight:700}
+
+.page-panel{display:none;padding:22px 26px 44px;animation:fadeUp .35s ease both}
+.page-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Sub-tabs (inside pages) */
+.stabs{display:flex;gap:5px;margin-bottom:18px;flex-wrap:wrap}
+.stab{padding:7px 14px;border-radius:var(--rs);font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--br);background:var(--bgc2);color:var(--txm);transition:all var(--tr);white-space:nowrap;display:flex;align-items:center;gap:5px}
+.stab:hover{background:var(--tg);border-color:var(--brs);color:var(--pl)}
+.stab.active{background:var(--tg);border-color:var(--brs);color:var(--pl)}
+.sub-panel{display:none}
+.sub-panel.active{display:block}
+
+/* ═══════════════════════════════════════════
+   CARDS & LAYOUT
+═══════════════════════════════════════════ */
+.card{background:var(--bgc);border:1px solid var(--br);border-radius:var(--r);padding:18px;transition:background var(--ts),border-color var(--ts)}
+.card:hover{border-color:var(--brs)}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px}
+.card-title{font-size:13.5px;font-weight:700;display:flex;align-items:center;gap:6px}
+.card-sub{font-size:11px;color:var(--txm)}
+
+.g1{margin-bottom:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-bottom:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px}
+.g-wide{display:grid;grid-template-columns:1.6fr 1fr;gap:15px;margin-bottom:16px}
+
+/* KPI cards */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px}
+.kpi{background:var(--bgc);border:1px solid var(--br);border-radius:var(--r);padding:16px;position:relative;overflow:hidden;transition:all var(--tr)}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2.5px}
+.kpi.bl::after{background:linear-gradient(90deg,var(--p),var(--cy))}
+.kpi.gr::after{background:linear-gradient(90deg,var(--s),var(--sl))}
+.kpi.or::after{background:linear-gradient(90deg,var(--a),var(--al))}
+.kpi.re::after{background:linear-gradient(90deg,var(--rd),var(--rl))}
+.kpi.pu::after{background:linear-gradient(90deg,var(--pu),#c4b5fd)}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--gp);border-color:var(--brs)}
+.kpi-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:11px}
+.kpi.bl .kpi-icon{background:rgba(37,99,235,.13)}
+.kpi.gr .kpi-icon{background:rgba(16,185,129,.13)}
+.kpi.or .kpi-icon{background:rgba(245,158,11,.13)}
+.kpi.re .kpi-icon{background:rgba(239,68,68,.13)}
+.kpi.pu .kpi-icon{background:rgba(139,92,246,.13)}
+.kpi-val{font-size:26px;font-weight:900;line-height:1;margin-bottom:3px}
+.kpi.bl .kpi-val{color:var(--pl)}
+.kpi.gr .kpi-val{color:var(--sl)}
+.kpi.or .kpi-val{color:var(--al)}
+.kpi.re .kpi-val{color:var(--rl)}
+.kpi.pu .kpi-val{color:#c4b5fd}
+.kpi-label{font-size:12px;color:var(--txm);margin-bottom:8px}
+.kpi-ch{font-size:11px;font-weight:600;color:var(--sl);display:flex;align-items:center;gap:3px}
+.kpi-ch.dn{color:var(--rl)}
+
+/* Score bar */
+.sbar{height:6px;border-radius:20px;background:var(--pt);overflow:hidden}
+.sbar-i{height:100%;border-radius:20px;transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.sbar-bl{background:linear-gradient(90deg,var(--p),var(--pl))}
+.sbar-gr{background:linear-gradient(90deg,var(--s),var(--sl))}
+.sbar-or{background:linear-gradient(90deg,var(--a),var(--al))}
+.sbar-pu{background:linear-gradient(90deg,var(--pu),#c4b5fd)}
+
+/* Pills / tags */
+.pill{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:5px;font-size:10.5px;font-weight:600}
+.p-bl{background:rgba(37,99,235,.13);color:var(--pl);border:1px solid rgba(37,99,235,.24)}
+.p-gr{background:rgba(16,185,129,.13);color:var(--sl);border:1px solid rgba(16,185,129,.24)}
+.p-or{background:rgba(245,158,11,.13);color:var(--al);border:1px solid rgba(245,158,11,.24)}
+.p-re{background:rgba(239,68,68,.13);color:var(--rl);border:1px solid rgba(239,68,68,.24)}
+.p-pu{background:rgba(139,92,246,.13);color:#c4b5fd;border:1px solid rgba(139,92,246,.24)}
+.p-gy{background:var(--bgc2);color:var(--txm);border:1px solid var(--br)}
+.tag{display:inline-flex;align-items:center;padding:2px 7px;border-radius:4px;font-size:10.5px;font-weight:600;background:var(--tg);color:var(--tgt);border:1px solid var(--br)}
+
+/* Table */
+.tbl-wrap{overflow-x:auto;border-radius:var(--rs)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{padding:9px 13px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--txd);background:var(--bgc2);border-bottom:1px solid var(--br);white-space:nowrap;text-align:right}
+[data-lang=en] thead th,[data-lang=de] thead th{text-align:left}
+tbody td{padding:10px 13px;border-bottom:1px solid var(--br);vertical-align:middle;color:var(--txm)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--tg);color:var(--tx)}
+.td-b{font-weight:700;color:var(--tx)}
+
+/* Filter bar */
+.fbar{display:flex;align-items:center;gap:7px;margin-bottom:13px;flex-wrap:wrap}
+.fbar input,.fbar select{background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx);font-size:12.5px;transition:border-color var(--tr);font-family:inherit}
+.fbar input{flex:1;min-width:160px}.fbar input::placeholder{color:var(--txd)}
+.fbar input:focus,.fbar select:focus{border-color:var(--brs)}
+.ftag{padding:6px 12px;border-radius:var(--rs);font-size:11.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--br);background:var(--bgc2);color:var(--txm);transition:all var(--tr);white-space:nowrap;font-family:inherit}
+.ftag:hover,.ftag.active{background:var(--tg);border-color:var(--brs);color:var(--pl)}
+
+/* Stat row */
+.stat-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--br)}
+.stat-row:last-child{border-bottom:none}
+.stat-label{font-size:12.5px;color:var(--txm)}
+.stat-val{font-size:13px;font-weight:700;color:var(--tx)}
+
+/* Company card */
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:13px}
+.co-card{background:var(--bgc);border:1px solid var(--br);border-radius:var(--r);padding:16px;transition:all var(--tr);cursor:pointer;position:relative;overflow:hidden}
+.co-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--p),var(--cy))}
+.co-card:hover{transform:translateY(-2px);box-shadow:var(--gp);border-color:var(--brs)}
+.co-hdr{display:flex;align-items:center;gap:11px;margin-bottom:12px}
+.co-av{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--p),var(--cy));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;box-shadow:var(--gp)}
+.co-name{font-size:13.5px;font-weight:700;margin-bottom:1px}
+.co-city{font-size:11px;color:var(--txm)}
+.co-rank{position:absolute;top:12px;left:12px;background:var(--bgc2);border:1px solid var(--br);border-radius:6px;padding:2px 8px;font-size:10.5px;font-weight:700;color:var(--txd)}
+[data-lang=en] .co-rank,[data-lang=de] .co-rank{left:auto;right:12px}
+.co-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:10px}
+.co-stat{background:var(--bgc2);border-radius:7px;padding:7px;text-align:center}
+.co-sv{font-size:15px;font-weight:800;color:var(--tx)}
+.co-sl{font-size:9.5px;color:var(--txd);margin-top:1px}
+.co-score-row{display:flex;align-items:center;gap:7px;margin-top:8px}
+.co-sc-val{font-size:12.5px;font-weight:700;color:var(--pl);margin-right:auto}
+[data-lang=en] .co-sc-val,[data-lang=de] .co-sc-val{margin-right:0;margin-left:auto}
+
+/* Ad card */
+.ad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:13px}
+.ad-card{background:var(--bgc);border:1px solid var(--br);border-radius:var(--r);overflow:hidden;transition:all var(--tr)}
+.ad-card:hover{transform:translateY(-2px);box-shadow:var(--gp);border-color:var(--brs)}
+.ad-pbar{height:3px}
+.ad-pbar.fb{background:#1877f2}.ad-pbar.ig{background:linear-gradient(90deg,#f09433,#e6683c,#dc2743,#cc2366)}
+.ad-pbar.go{background:linear-gradient(90deg,#4285f4,#34a853,#fbbc05,#ea4335)}.ad-pbar.yt{background:#f00}.ad-pbar.tt{background:linear-gradient(90deg,#010101,#ff0050,#00f2ea)}
+.ad-body{padding:12px}
+.ad-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.ad-co{font-size:11.5px;font-weight:700;color:var(--txm)}
+.ad-plat{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:var(--bgc2);color:var(--txd)}
+.ad-hl{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:9px;line-height:1.4}
+.ad-mets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}
+.ad-met{background:var(--bgc2);border-radius:6px;padding:6px;text-align:center}
+.ad-mv{font-size:13.5px;font-weight:800;color:var(--pl)}
+.ad-ml{font-size:9px;color:var(--txd);margin-top:1px}
+
+/* Social platform card */
+.soc-card{background:var(--bgc);border:1px solid var(--br);border-radius:var(--r);padding:16px;transition:all var(--tr)}
+.soc-card:hover{border-color:var(--brs)}
+.soc-hdr{display:flex;align-items:center;gap:9px;margin-bottom:11px}
+.soc-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.soc-fol{font-size:24px;font-weight:900;margin-bottom:3px}
+.soc-er{font-size:11.5px;color:var(--txm)}
+
+/* Modal */
+.modal-ov{display:none;position:fixed;inset:0;background:var(--ov);z-index:600;align-items:center;justify-content:center;padding:18px}
+.modal-ov.open{display:flex}
+.modal{background:var(--bgc);border:1px solid var(--brs);border-radius:var(--r);width:min(760px,94vw);max-height:90vh;overflow-y:auto;animation:fadeUp .28s ease both;position:relative}
+.modal-hdr{padding:18px 22px 14px;border-bottom:1px solid var(--br);display:flex;align-items:center;gap:11px}
+.modal-title{font-size:16px;font-weight:800;flex:1}
+.modal-close{width:30px;height:30px;border-radius:7px;background:var(--bgc2);border:1px solid var(--br);color:var(--txm);font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
+.modal-close:hover{color:var(--tx);border-color:var(--brs)}
+.modal-body{padding:18px 22px 22px}
+
+/* Notification dot */
+.notif-dot{position:absolute;top:4px;right:4px;width:7px;height:7px;background:var(--rd);border-radius:50%;border:2px solid var(--bgc)}
+.notif-panel{position:absolute;top:calc(100% + 8px);width:300px;background:var(--bgc);border:1.5px solid var(--brs);border-radius:var(--r);box-shadow:var(--sh);z-index:400;display:none}
+[data-lang=ar] .notif-panel{right:0}[data-lang=en] .notif-panel,[data-lang=de] .notif-panel{left:0}
+.notif-panel.open{display:block}
+.np-hdr{padding:11px 14px;border-bottom:1px solid var(--br);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.np-item{padding:10px 14px;border-bottom:1px solid var(--br);cursor:pointer;transition:background var(--tr)}
+.np-item:hover{background:var(--tg)}.np-item:last-child{border-bottom:none}
+.np-title{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:2px}
+.np-sub{font-size:11px;color:var(--txm)}.np-time{font-size:10px;color:var(--txd);margin-top:2px}
+
+/* TAM bars */
+.tam-row{display:flex;align-items:center;gap:14px;margin-bottom:11px;padding:12px 14px;background:var(--bgc2);border-radius:11px;border:1px solid var(--br)}
+.tam-lbl{min-width:50px;font-size:13px;font-weight:700;color:var(--txm)}
+.tam-val{font-size:15px;font-weight:900;min-width:85px;text-align:left}
+[data-lang=ar] .tam-val{text-align:right}
+
+/* Stagger */
+.stag>*{animation:fadeUp .38s ease both}
+.stag>*:nth-child(1){animation-delay:.04s}.stag>*:nth-child(2){animation-delay:.08s}.stag>*:nth-child(3){animation-delay:.12s}
+.stag>*:nth-child(4){animation-delay:.16s}.stag>*:nth-child(5){animation-delay:.20s}.stag>*:nth-child(6){animation-delay:.24s}
+.stag>*:nth-child(7){animation-delay:.28s}.stag>*:nth-child(8){animation-delay:.32s}.stag>*:nth-child(9){animation-delay:.36s}
+.stag>*:nth-child(10){animation-delay:.40s}.stag>*:nth-child(11){animation-delay:.44s}.stag>*:nth-child(12){animation-delay:.48s}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .g-wide{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .g4{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  :root{--sw:0px}
+  .sidebar{transform:translateX(100%);width:282px!important}
+  [data-lang=en] .sidebar,[data-lang=de] .sidebar{transform:translateX(-100%);left:0;right:auto;width:282px!important}
+  .sidebar.open{transform:translateX(0)}
+  .mob-overlay.open{display:block}
+  .topbar-mob{display:flex}
+  .main{margin-right:0!important;margin-left:0!important;padding-top:var(--th)}
+  .ph{padding:14px 14px 0}
+  .gsearch-wrap{padding:10px 14px 0}
+  .page-tabs{padding:12px 14px 0}
+  .page-panel{padding:14px 14px 32px}
+  .kpi-row{grid-template-columns:1fr 1fr}
+  .g2,.g3,.g-wide,.g4{grid-template-columns:1fr}
+  .co-grid,.ad-grid{grid-template-columns:1fr}
+  .modal{width:96vw}
+  .ph-title{font-size:18px}
+  .notif-panel{position:fixed;top:var(--th);left:8px;right:8px;width:auto}
+  .gsearch-bar .kbd{display:none}
+}
+@media(max-width:480px){
+  .kpi-row{grid-template-columns:1fr}
+  .btn{font-size:11.5px;padding:6px 11px}
+  .ptab{font-size:11.5px;padding:7px 11px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ SPOTLIGHT SEARCH ═══ -->
+<div class="spotlight" id="spotlight" onclick="closeSpotlight(event)">
+  <div class="sp-bg"></div>
+  <div class="sp-box">
+    <div class="sp-inp">
+      <span style="font-size:17px;color:var(--txd)">🔍</span>
+      <input type="text" id="spInput" placeholder="" oninput="doSearch(this.value)" onkeydown="spNav(event)" autocomplete="off">
+      <kbd style="background:var(--bgc2);border:1px solid var(--br);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--txd);font-family:'IBM Plex Mono',monospace">Esc</kbd>
+    </div>
+    <div class="sp-list" id="spList"></div>
+  </div>
+</div>
+
+<!-- ═══ COMPANY MODAL ═══ -->
+<div class="modal-ov" id="coModal" onclick="closeModal('coModal',event)">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="coModalTitle"></div>
+      <button class="modal-close" onclick="closeModal('coModal')">✕</button>
+    </div>
+    <div class="modal-body" id="coModalBody"></div>
+  </div>
+</div>
+
+<!-- ═══ MOBILE OVERLAY ═══ -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeSidebar()"></div>
+
+<!-- ═══ MOBILE TOPBAR ═══ -->
+<div class="topbar-mob">
+  <div class="mob-logo">
+    <div class="mi">🔍</div>
+    <span id="mobBrand">بصمة رقمية</span>
+  </div>
+  <div style="position:relative">
+    <button class="icon-btn" onclick="toggleNotif(event)">🔔<span class="notif-dot"></span></button>
+    <div class="notif-panel" id="npMob"></div>
+  </div>
+  <button class="icon-btn" onclick="openSpotlight()">🔍</button>
+  <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+</div>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sb-inner">
+    <div class="sb-logo">
+      <div class="sb-logo-wrap">
+        <div class="sb-logo-icon">🔍</div>
+        <div><div class="sb-brand" id="sbBrand">بصمة رقمية</div><div class="sb-sub" id="sbSub">سوق المعدات الثقيلة — مصر</div></div>
+      </div>
+    </div>
+
+    <div class="sb-sec">
+      <span class="sb-sec-title" id="sbSecMain">الرئيسية</span>
+      <a class="nav-item active" onclick="gotoPage('overview',this)" href="#">
+        <span class="ni">📊</span><span id="nav-overview">نظرة شاملة</span><span class="nav-badge g" id="badgeLive">مباشر</span>
+      </a>
+    </div>
+    <div class="sb-sec">
+      <span class="sb-sec-title" id="sbSecAnalysis">التحليل</span>
+      <a class="nav-item" onclick="gotoPage('competitors',this)" href="#">
+        <span class="ni">🏢</span><span id="nav-competitors">المنافسون</span><span class="nav-badge">52</span>
+      </a>
+      <a class="nav-item" onclick="gotoPage('keywords',this)" href="#">
+        <span class="ni">🔑</span><span id="nav-keywords">الكلمات المفتاحية</span><span class="nav-badge g">990</span>
+      </a>
+      <a class="nav-item" onclick="gotoPage('ads',this)" href="#">
+        <span class="ni">📢</span><span id="nav-ads">الإعلانات</span><span class="nav-badge o">342</span>
+      </a>
+      <a class="nav-item" onclick="gotoPage('social',this)" href="#">
+        <span class="ni">📱</span><span id="nav-social">السوشيال ميديا</span>
+      </a>
+    </div>
+    <div class="sb-sec">
+      <span class="sb-sec-title" id="sbSecMarket">السوق</span>
+      <a class="nav-item" onclick="gotoPage('pricing',this)" href="#">
+        <span class="ni">💰</span><span id="nav-pricing">الأسعار والتكاليف</span>
+      </a>
+      <a class="nav-item" onclick="gotoPage('market',this)" href="#">
+        <span class="ni">📈</span><span id="nav-market">تحليل السوق</span>
+      </a>
+      <a class="nav-item" onclick="gotoPage('reports',this)" href="#">
+        <span class="ni">📄</span><span id="nav-reports">التقارير</span>
+      </a>
+    </div>
+
+    <div class="sb-themes">
+      <span class="sb-themes-title" id="sbThemeLabel">🎨 ثيم العرض</span>
+      <div class="theme-grid">
+        <button class="theme-btn active" onclick="setTheme('midnight',this)"><div class="theme-dot" style="background:linear-gradient(135deg,#2563eb,#06b6d4)"></div><span id="th-midnight">ليلي أزرق</span></button>
+        <button class="theme-btn" onclick="setTheme('desert',this)"><div class="theme-dot" style="background:linear-gradient(135deg,#d97706,#dc2626)"></div><span id="th-desert">ذهب الصحراء</span></button>
+        <button class="theme-btn" onclick="setTheme('emerald',this)"><div class="theme-dot" style="background:linear-gradient(135deg,#059669,#0ea5e9)"></div><span id="th-emerald">زمرد داكن</span></button>
+        <button class="theme-btn" onclick="setTheme('arctic',this)"><div class="theme-dot" style="background:linear-gradient(135deg,#e2e8f0,#2563eb)"></div><span id="th-arctic">أبيض قطبي</span></button>
+      </div>
+    </div>
+
+    <div class="sb-langs">
+      <div class="lang-row">
+        <button class="lang-btn active" onclick="setLang('ar',this)">عربي</button>
+        <button class="lang-btn" onclick="setLang('en',this)">English</button>
+        <button class="lang-btn" onclick="setLang('de',this)">Deutsch</button>
+      </div>
+    </div>
+
+    <div class="sb-footer">
+      <div class="live-pill"><div class="pulse"></div><span id="sbUpdate">آخر تحديث: مارس 2026</span></div>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════════ -->
+<main class="main" id="mainWrap">
+
+  <!-- Page Header -->
+  <div class="ph">
+    <div>
+      <div class="ph-title" id="phTitle">📊 لوحة الذكاء — نظرة شاملة</div>
+      <div class="ph-sub" id="phSub">سوق المعدات الثقيلة في مصر · بيانات مارس 2026</div>
+      <div class="ph-meta stag" id="phMeta">
+        <div class="meta-pill">🏢 <strong>52</strong> <span id="mp1">شركة</span></div>
+        <div class="meta-pill">💰 <strong>4.7B</strong> <span id="mp2">ج.م حجم السوق</span></div>
+        <div class="meta-pill">🔑 <strong>990</strong> <span id="mp3">كلمة مفتاحية</span></div>
+        <div class="meta-pill">📢 <strong>342</strong> <span id="mp4">إعلان نشط</span></div>
+      </div>
+    </div>
+    <div class="ph-actions">
+      <div style="position:relative">
+        <button class="icon-btn" onclick="toggleNotif(event)" style="position:relative">🔔<span class="notif-dot"></span>
+          <div class="notif-panel" id="npDesk"></div>
+        </button>
+      </div>
+      <button class="btn btn-g btn-sm" onclick="exportPage()">⬇️ <span id="btnExport">تصدير</span></button>
+      <button class="btn btn-p btn-sm" onclick="openSpotlight()">🔍 <span id="btnSearch">بحث</span> <kbd style="background:rgba(255,255,255,.15);border-radius:3px;padding:1px 5px;font-size:10px;font-family:'IBM Plex Mono',monospace">Ctrl+K</kbd></button>
+    </div>
+  </div>
+
+  <!-- Inline search bar -->
+  <div class="gsearch-wrap">
+    <div class="gsearch-bar" onclick="openSpotlight()">
+      <span style="font-size:15px;color:var(--txd)">🔍</span>
+      <input type="text" readonly id="gsInline" placeholder="">
+      <span class="kbd">Ctrl + K</span>
+    </div>
+  </div>
+
+  <!-- ──────── PAGE TABS ──────── -->
+  <div class="page-tabs" id="pageTabs">
+    <button class="ptab active" onclick="gotoPage('overview',null,this)">📊 <span id="ptab-overview">نظرة شاملة</span></button>
+    <button class="ptab" onclick="gotoPage('competitors',null,this)">🏢 <span id="ptab-competitors">المنافسون</span></button>
+    <button class="ptab" onclick="gotoPage('keywords',null,this)">🔑 <span id="ptab-keywords">الكلمات</span></button>
+    <button class="ptab" onclick="gotoPage('ads',null,this)">📢 <span id="ptab-ads">الإعلانات</span></button>
+    <button class="ptab" onclick="gotoPage('social',null,this)">📱 <span id="ptab-social">السوشيال</span></button>
+    <button class="ptab" onclick="gotoPage('pricing',null,this)">💰 <span id="ptab-pricing">الأسعار</span></button>
+    <button class="ptab" onclick="gotoPage('market',null,this)">📈 <span id="ptab-market">السوق</span></button>
+    <button class="ptab" onclick="gotoPage('reports',null,this)">📄 <span id="ptab-reports">التقارير</span></button>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: OVERVIEW
+  ══════════════════════════════ -->
+  <div class="page-panel active" id="pg-overview">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('overview','main',this)">🏠 <span id="st-ov-main">الرئيسية</span></button>
+      <button class="stab" onclick="subTab('overview','map',this)">🗺️ <span id="st-ov-map">الخريطة</span></button>
+      <button class="stab" onclick="subTab('overview','health',this)">💊 <span id="st-ov-health">صحة السوق</span></button>
+    </div>
+
+    <!-- sub: main -->
+    <div class="sub-panel active" id="sp-overview-main">
+      <div class="kpi-row stag" id="ovKPIs"></div>
+      <div class="g-wide stag">
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">📊 <span id="ct-ms">حصة السوق الرقمية</span></div><div class="card-sub" id="cs-ms">أعلى 8 شركات</div></div>
+          <canvas id="cMarketShare" height="220"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">🏅 <span id="ct-top">أبرز المنافسين</span></div></div>
+          <div id="topCoList" style="max-height:240px;overflow-y:auto"></div>
+        </div>
+      </div>
+      <div class="g3 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">📅 <span id="ct-trend">الاتجاه الشهري</span></div></div><canvas id="cTrend" height="180"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🚧 <span id="ct-equip">أنواع المعدات</span></div></div><canvas id="cEquip" height="180"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🏷️ <span id="ct-brands">العلامات</span></div></div><canvas id="cBrands" height="180"></canvas></div>
+      </div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">🔑 <span id="ct-kw">أعلى الكلمات</span></div></div><canvas id="cTopKW" height="200"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">📱 <span id="ct-soc">الحضور الرقمي</span></div></div><canvas id="cSocRadar" height="200"></canvas></div>
+      </div>
+      <div class="g2 stag">
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">💰 <span id="ct-price">لقطة الأسعار</span></div><div class="card-sub" id="cs-price">إيجار يومي (ج.م)</div></div>
+          <div class="tbl-wrap"><table><thead id="priceSnapHead"><tr></tr></thead><tbody id="priceSnapBody"></tbody></table></div>
+        </div>
+        <div class="card"><div class="card-hdr"><div class="card-title">📊 <span id="ct-health">صحة السوق</span></div></div><div id="healthStats"></div></div>
+      </div>
+    </div>
+
+    <!-- sub: map -->
+    <div class="sub-panel" id="sp-overview-map">
+      <div class="g-wide">
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">🗺️ <span id="ct-map">التوزيع الجغرافي</span></div><div class="card-sub" id="cs-map">اضغط على مدينة</div></div>
+          <svg viewBox="0 0 600 700" style="width:100%;max-height:460px;display:block">
+            <defs>
+              <radialGradient id="mapGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="var(--p)" stop-opacity=".15"/>
+                <stop offset="100%" stop-color="var(--p)" stop-opacity=".02"/>
+              </radialGradient>
+            </defs>
+            <rect width="600" height="700" fill="url(#mapGrad)" rx="8"/>
+            <ellipse cx="310" cy="200" rx="95" ry="65" fill="rgba(16,185,129,.09)" stroke="var(--s)" stroke-width="1.2" opacity=".7"/>
+            <circle cx="310" cy="300" r="50" fill="rgba(37,99,235,.11)" stroke="var(--p)" stroke-width="1.5" opacity=".8"/>
+            <rect x="248" y="360" width="105" height="290" rx="9" fill="rgba(245,158,11,.07)" stroke="var(--a)" stroke-width="1" opacity=".6"/>
+            <polygon points="400,210 510,175 525,330 415,340" fill="rgba(139,92,246,.09)" stroke="var(--pu)" stroke-width="1" opacity=".6"/>
+            <circle cx="200" cy="155" r="30" fill="rgba(239,68,68,.1)" stroke="var(--rd)" stroke-width="1.5" opacity=".7"/>
+            <circle cx="350" cy="370" r="18" fill="rgba(6,182,212,.1)" stroke="var(--cy)" stroke-width="1" opacity=".7"/>
+            <!-- City dots -->
+            <circle cx="310" cy="295" r="16" fill="var(--p)" opacity=".85" style="cursor:pointer"><title>القاهرة والجيزة — 6 شركات</title></circle>
+            <text x="310" y="299" text-anchor="middle" fill="#fff" font-size="10" font-family="Cairo" font-weight="900">6</text>
+            <text x="310" y="318" text-anchor="middle" fill="var(--tx)" font-size="10" font-family="Cairo" font-weight="600">القاهرة</text>
+            <circle cx="200" cy="152" r="10" fill="var(--rd)" opacity=".85"><title>الإسكندرية — 1 شركة</title></circle>
+            <text x="200" y="156" text-anchor="middle" fill="#fff" font-size="9" font-family="Cairo" font-weight="900">1</text>
+            <text x="200" y="170" text-anchor="middle" fill="var(--tx)" font-size="9" font-family="Cairo">الإسكندرية</text>
+            <circle cx="350" cy="368" r="11" fill="var(--cy)" opacity=".85"><title>العاصمة الإدارية — 2 شركات</title></circle>
+            <text x="350" y="372" text-anchor="middle" fill="#fff" font-size="9" font-family="Cairo" font-weight="900">2</text>
+            <text x="350" y="386" text-anchor="middle" fill="var(--tx)" font-size="9" font-family="Cairo">العاصمة</text>
+            <circle cx="312" cy="200" r="9" fill="var(--s)" opacity=".85"><title>الدلتا — 1 شركة</title></circle>
+            <text x="312" y="204" text-anchor="middle" fill="#fff" font-size="8" font-family="Cairo" font-weight="900">1</text>
+            <text x="312" y="217" text-anchor="middle" fill="var(--tx)" font-size="9" font-family="Cairo">الدلتا</text>
+            <circle cx="300" cy="490" r="9" fill="var(--a)" opacity=".85"><title>الصعيد — 1 شركة</title></circle>
+            <text x="300" y="494" text-anchor="middle" fill="#fff" font-size="8" font-family="Cairo" font-weight="900">1</text>
+            <text x="300" y="508" text-anchor="middle" fill="var(--tx)" font-size="9" font-family="Cairo">الصعيد</text>
+            <circle cx="464" cy="258" r="9" fill="var(--pu)" opacity=".85"><title>سيناء والقناة — 2 شركة</title></circle>
+            <text x="464" y="262" text-anchor="middle" fill="#fff" font-size="8" font-family="Cairo" font-weight="900">2</text>
+            <text x="464" y="276" text-anchor="middle" fill="var(--tx)" font-size="9" font-family="Cairo">سيناء</text>
+          </svg>
+        </div>
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">📍 <span id="ct-region">توزيع الشركات</span></div></div>
+          <canvas id="cRegions" height="220"></canvas>
+          <div style="margin-top:14px" id="regionList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- sub: health -->
+    <div class="sub-panel" id="sp-overview-health">
+      <div class="g3 stag">
+        <div class="card" style="text-align:center;padding:22px">
+          <div style="font-size:13px;color:var(--txm);margin-bottom:8px" id="hc-comp">حدة المنافسة</div>
+          <div style="font-size:44px;font-weight:900;color:var(--rl)" id="hv-comp">عالية جداً</div>
+          <div style="margin-top:12px" class="sbar"><div class="sbar-i sbar-or" style="width:88%"></div></div>
+        </div>
+        <div class="card" style="text-align:center;padding:22px">
+          <div style="font-size:13px;color:var(--txm);margin-bottom:8px" id="hc-grow">نمو الطلب</div>
+          <div style="font-size:44px;font-weight:900;color:var(--sl)">+18%</div>
+          <canvas id="cGrowthMini" height="70"></canvas>
+        </div>
+        <div class="card" style="text-align:center;padding:22px">
+          <div style="font-size:13px;color:var(--txm);margin-bottom:8px" id="hc-proj">المشاريع النشطة</div>
+          <div style="font-size:44px;font-weight:900;color:var(--pl)">340+</div>
+          <div style="font-size:12px;color:var(--txm);margin-top:8px" id="hv-proj">مشروع إنشائي جارٍ في مصر</div>
+        </div>
+      </div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">💲 TAM / SAM / SOM</div></div><div id="tamSection"></div></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🎯 <span id="ct-drivers">محركات السوق</span></div></div><div id="driversSection"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: COMPETITORS
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-competitors">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('competitors','list',this)">📋 <span id="st-co-list">قائمة الشركات</span></button>
+      <button class="stab" onclick="subTab('competitors','compare',this)">⚖️ <span id="st-co-cmp">مقارنة</span></button>
+      <button class="stab" onclick="subTab('competitors','charts',this)">📊 <span id="st-co-charts">رسوم بيانية</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-competitors-list">
+      <div class="kpi-row stag" id="coKPIs"></div>
+      <div class="fbar">
+        <input type="text" id="coSearch" placeholder="" oninput="filterCo()">
+        <select id="coRegion" onchange="filterCo()" style="background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx)">
+          <option value="" id="opt-all-reg">كل المناطق</option>
+          <option value="cairo">القاهرة</option><option value="alex">الإسكندرية</option>
+          <option value="capital">العاصمة</option><option value="delta">الدلتا</option>
+          <option value="upper">الصعيد</option><option value="sinai">سيناء</option><option value="suez">السويس</option>
+        </select>
+        <button class="ftag active" onclick="setSortCo('score',this)" id="sort-score">ترتيب: النقاط</button>
+        <button class="ftag" onclick="setSortCo('monthly_budget',this)" id="sort-budget">الميزانية</button>
+        <button class="ftag" onclick="setSortCo('fleet_size',this)" id="sort-fleet">الأسطول</button>
+      </div>
+      <div class="co-grid stag" id="coGrid"></div>
+    </div>
+    <div class="sub-panel" id="sp-competitors-compare">
+      <div class="card g1">
+        <div class="card-hdr"><div class="card-title">⚖️ <span id="ct-cmp">مقارنة شركتين</span></div></div>
+        <div style="display:flex;gap:11px;flex-wrap:wrap;margin-bottom:14px">
+          <select id="cmpA" style="flex:1;min-width:180px;background:var(--bgc2);border:1.5px solid var(--br);border-radius:var(--rs);padding:9px 12px;color:var(--tx)"></select>
+          <select id="cmpB" style="flex:1;min-width:180px;background:var(--bgc2);border:1.5px solid var(--br);border-radius:var(--rs);padding:9px 12px;color:var(--tx)"></select>
+          <button class="btn btn-p" onclick="doCmp()">⚖️ <span id="btn-cmp">قارن</span></button>
+        </div>
+        <div id="cmpResult"></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-competitors-charts">
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">📊 <span id="ct-dp">الحضور الرقمي</span></div></div><canvas id="cDigPres" height="280"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">💰 <span id="ct-adbudg">ميزانية الإعلانات</span></div></div><canvas id="cAdBudg" height="280"></canvas></div>
+      </div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">👥 <span id="ct-socfol">المتابعون</span></div></div><canvas id="cSocFol" height="220"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🚧 <span id="ct-fleet">الأسطول</span></div></div><canvas id="cFleet" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: KEYWORDS
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-keywords">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('keywords','all',this)">🔑 <span id="st-kw-all">كل الكلمات</span> <span class="ptab-badge">990</span></button>
+      <button class="stab" onclick="subTab('keywords','opps',this)">⭐ <span id="st-kw-opps">الفرص الذهبية</span></button>
+      <button class="stab" onclick="subTab('keywords','charts',this)">📊 <span id="st-kw-charts">التحليل</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-keywords-all">
+      <div class="kpi-row stag" id="kwKPIs"></div>
+      <div class="fbar">
+        <input type="text" id="kwSearch" placeholder="" oninput="filterKW()">
+        <select id="kwType" onchange="filterKW()" style="background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx)"><option value="" id="opt-all-types">كل الأنواع</option><option value="head">Head</option><option value="body">Body</option><option value="longtail">Long Tail</option></select>
+        <select id="kwIntent" onchange="filterKW()" style="background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx)"><option value="" id="opt-all-int">كل النوايا</option><option value="transactional">Transactional</option><option value="informational">Informational</option><option value="navigational">Navigational</option></select>
+        <button class="ftag" id="kwOppBtn" onclick="toggleKwOpp(this)">⭐ <span id="opp-only-txt">الفرص فقط</span></button>
+      </div>
+      <div class="card g1"><div class="tbl-wrap"><table>
+        <thead><tr id="kwHead"></tr></thead>
+        <tbody id="kwBody" style="font-size:12px"></tbody>
+      </table></div><div style="padding:10px 0;color:var(--txd);font-size:11.5px;text-align:center" id="kwInfo"></div></div>
+    </div>
+    <div class="sub-panel" id="sp-keywords-opps">
+      <div class="card g1"><div class="card-hdr"><div class="card-title">⭐ <span id="ct-golden">الفرص الذهبية</span></div><div class="card-sub" id="cs-golden">منخفضة المنافسة · عالية الإيرادات</div></div><div id="goldenList"></div></div>
+    </div>
+    <div class="sub-panel" id="sp-keywords-charts">
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">📊 <span id="ct-kwvol">حجم البحث</span></div></div><canvas id="cKwVol" height="260"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🎯 <span id="ct-kwint">النوايا</span></div></div><canvas id="cKwInt" height="260"></canvas></div>
+      </div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">💰 <span id="ct-kwcpc">أعلى CPC</span></div></div><canvas id="cKwCpc" height="220"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🏷️ <span id="ct-kwtype">أنواع الكلمات</span></div></div><canvas id="cKwTypes" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: ADS
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-ads">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('ads','gallery',this)">🖼️ <span id="st-ad-gal">معرض الإعلانات</span></button>
+      <button class="stab" onclick="subTab('ads','budgets',this)">💰 <span id="st-ad-budg">الميزانيات</span></button>
+      <button class="stab" onclick="subTab('ads','insights',this)">💡 <span id="st-ad-ins">الرؤى</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-ads-gallery">
+      <div class="kpi-row stag" id="adKPIs"></div>
+      <div class="fbar">
+        <input type="text" id="adSearch" placeholder="" oninput="filterAd()">
+        <select id="adPlat" onchange="filterAd()" style="background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx)"><option value="" id="opt-all-plat">كل المنصات</option><option>Facebook</option><option>Instagram</option><option>Google</option><option>YouTube</option><option>TikTok</option></select>
+        <select id="adCo" onchange="filterAd()" style="background:var(--bgc);border:1.5px solid var(--br);border-radius:var(--rs);padding:7px 12px;color:var(--tx)"></select>
+      </div>
+      <div class="ad-grid stag" id="adGrid"></div>
+    </div>
+    <div class="sub-panel" id="sp-ads-budgets">
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">💰 <span id="ct-budgco">الميزانية بالشركة</span></div></div><canvas id="cAdBudgBar" height="280"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">📱 <span id="ct-platdist">توزيع المنصات</span></div></div><canvas id="cAdPlat" height="280"></canvas></div>
+      </div>
+      <div class="card stag g1"><div class="card-hdr"><div class="card-title">📊 <span id="ct-budgtbl">جدول الميزانيات</span></div></div><div class="tbl-wrap" id="budgTable"></div></div>
+    </div>
+    <div class="sub-panel" id="sp-ads-insights">
+      <div class="g3 stag" id="adInsights"></div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">📅 <span id="ct-adtrend">اتجاه الإعلانات</span></div></div><canvas id="cAdTrend" height="220"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">⏰ <span id="ct-adtime">أفضل أوقات النشر</span></div></div><canvas id="cAdTime" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: SOCIAL
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-social">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('social','plat',this)">📱 <span id="st-soc-plat">المنصات</span></button>
+      <button class="stab" onclick="subTab('social','content',this)">✍️ <span id="st-soc-cont">المحتوى</span></button>
+      <button class="stab" onclick="subTab('social','sent',this)">💬 <span id="st-soc-sent">المشاعر</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-social-plat">
+      <div class="kpi-row stag" id="socKPIs"></div>
+      <div class="g4 stag" id="platCards"></div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">📈 <span id="ct-folgrow">نمو المتابعين</span></div></div><canvas id="cFolGrow" height="220"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">💫 <span id="ct-er">معدل التفاعل</span></div></div><canvas id="cEngRate" height="220"></canvas></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-social-content">
+      <div class="g3 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">🏷️ <span id="ct-ctypes">أنواع المحتوى</span></div></div><canvas id="cContTypes" height="200"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">⏰ <span id="ct-besttimes">أفضل الأوقات</span></div></div><canvas id="cBestTimes" height="200"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">#️⃣ <span id="ct-hashtags">الهاشتاجات</span></div></div><div id="hashCloud" style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px"></div></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-social-sent">
+      <div class="g3 stag" id="sentGrid"></div>
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">🥧 <span id="ct-sentdist">توزيع المشاعر</span></div></div><canvas id="cSentDist" height="220"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">💬 <span id="ct-reviews">أحدث المراجعات</span></div></div><div id="reviewsList" style="max-height:250px;overflow-y:auto"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: PRICING
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-pricing">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('pricing','table',this)">📋 <span id="st-pr-tbl">جدول الأسعار</span></button>
+      <button class="stab" onclick="subTab('pricing','calc',this)">🧮 <span id="st-pr-calc">الحاسبة</span></button>
+      <button class="stab" onclick="subTab('pricing','cmp',this)">📊 <span id="st-pr-cmp">مقارنة الأسعار</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-pricing-table">
+      <div class="card g1">
+        <div class="card-hdr"><div class="card-title">💰 <span id="ct-fulltbl">جدول الأسعار الكامل</span></div><div class="card-sub" id="cs-fulltbl">إيجار يومي · أسبوعي · شهري · ربع سنوي (ج.م مصري)</div></div>
+        <div class="tbl-wrap"><table>
+          <thead><tr id="priceHead"></tr></thead>
+          <tbody id="priceBody"></tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-pricing-calc">
+      <div class="g-wide">
+        <div class="card">
+          <div class="card-hdr"><div class="card-title">🧮 <span id="ct-calc">حاسبة الإيجار</span></div></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div><label style="font-size:12px;color:var(--txm);display:block;margin-bottom:5px" id="calc-equip-lbl">نوع المعدة</label>
+              <select id="calcEquip" onchange="updateCalc()" style="width:100%;background:var(--bgc2);border:1.5px solid var(--br);border-radius:var(--rs);padding:9px 12px;color:var(--tx)"></select></div>
+            <div><label style="font-size:12px;color:var(--txm);display:block;margin-bottom:5px"><span id="calc-days-lbl">عدد الأيام:</span> <strong id="calcDaysVal" style="color:var(--pl)">7</strong></label>
+              <input type="range" id="calcDays" min="1" max="365" value="7" oninput="updateCalc()" style="width:100%;accent-color:var(--p)"></div>
+            <div><label style="font-size:12px;color:var(--txm);display:block;margin-bottom:5px"><span id="calc-units-lbl">عدد الوحدات:</span> <strong id="calcUnitsVal" style="color:var(--pl)">1</strong></label>
+              <input type="range" id="calcUnits" min="1" max="10" value="1" oninput="updateCalc()" style="width:100%;accent-color:var(--p)"></div>
+            <div style="background:var(--bgc2);border:1.5px solid var(--brs);border-radius:11px;padding:14px">
+              <div style="font-size:11.5px;color:var(--txm);margin-bottom:5px" id="calc-est-lbl">التكلفة التقديرية</div>
+              <div id="calcResult" style="font-size:30px;font-weight:900;color:var(--pl)">0 ج.م</div>
+              <div id="calcBreak" style="font-size:11.5px;color:var(--txm);margin-top:6px"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card"><div class="card-hdr"><div class="card-title">📊 <span id="ct-priceTrend">اتجاهات الأسعار</span></div></div><canvas id="cPriceTrend" height="300"></canvas></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-pricing-cmp">
+      <div class="card g1"><div class="card-hdr"><div class="card-title">📊 <span id="ct-priceCmp">مقارنة أسعار الشركات</span></div></div><canvas id="cPriceCmp" height="280"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: MARKET
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-market">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('market','overview',this)">📈 <span id="st-mk-ov">نظرة السوق</span></button>
+      <button class="stab" onclick="subTab('market','segments',this)">🥧 <span id="st-mk-seg">القطاعات</span></button>
+      <button class="stab" onclick="subTab('market','growth',this)">🚀 <span id="st-mk-grow">النمو 2020–2028</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-market-overview">
+      <div class="g2 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">💲 TAM / SAM / SOM</div></div><div id="tamMrkt"></div></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">📍 <span id="ct-geodem">الطلب الجغرافي</span></div></div><canvas id="cGeoDem" height="260"></canvas></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-market-segments">
+      <div class="g3 stag">
+        <div class="card"><div class="card-hdr"><div class="card-title">🚧 <span id="ct-eqdem">طلب المعدات</span></div></div><canvas id="cEqDem" height="240"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🏗️ <span id="ct-sectdem">القطاعات</span></div></div><canvas id="cSectDem" height="240"></canvas></div>
+        <div class="card"><div class="card-hdr"><div class="card-title">🌍 <span id="ct-brandorig">أصل العلامات</span></div></div><canvas id="cBrandOrig" height="240"></canvas></div>
+      </div>
+    </div>
+    <div class="sub-panel" id="sp-market-growth">
+      <div class="card g1"><div class="card-hdr"><div class="card-title">📈 <span id="ct-mkgrow">نمو السوق 2020–2028</span></div></div><canvas id="cMkGrow" height="320"></canvas></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════
+       PAGE: REPORTS
+  ══════════════════════════════ -->
+  <div class="page-panel" id="pg-reports">
+    <div class="stabs">
+      <button class="stab active" onclick="subTab('reports','co',this)">🏢 <span id="st-rep-co">تقارير الشركات</span> <span class="ptab-badge">12</span></button>
+      <button class="stab" onclick="subTab('reports','mkt',this)">📈 <span id="st-rep-mkt">تقارير السوق</span> <span class="ptab-badge">4</span></button>
+      <button class="stab" onclick="subTab('reports','build',this)">🛠️ <span id="st-rep-build">منشئ التقارير</span></button>
+    </div>
+    <div class="sub-panel active" id="sp-reports-co">
+      <div class="kpi-row stag" id="repKPIs"></div>
+      <div class="co-grid stag" id="repCoGrid"></div>
+    </div>
+    <div class="sub-panel" id="sp-reports-mkt">
+      <div class="g2 stag" id="mktRepCards"></div>
+    </div>
+    <div class="sub-panel" id="sp-reports-build">
+      <div class="card g1">
+        <div class="card-hdr"><div class="card-title">🛠️ <span id="ct-builder">منشئ التقارير المخصصة</span></div></div>
+        <div style="display:grid;gap:14px">
+          <div><label style="font-size:12px;color:var(--txm);display:block;margin-bottom:8px" id="lbl-selco">اختر الشركات (حتى 5)</label><div id="builderCos" style="display:flex;flex-wrap:wrap;gap:7px"></div></div>
+          <div><label style="font-size:12px;color:var(--txm);display:block;margin-bottom:8px" id="lbl-seldim">اختر أبعاد التقرير</label>
+            <div style="display:flex;flex-wrap:wrap;gap:7px">
+              <button class="ftag active" data-dim="digital">📊 <span id="dim-digital">الحضور الرقمي</span></button>
+              <button class="ftag active" data-dim="ads">📢 <span id="dim-ads">الإعلانات</span></button>
+              <button class="ftag active" data-dim="social">📱 <span id="dim-social">السوشيال</span></button>
+              <button class="ftag" data-dim="pricing">💰 <span id="dim-pricing">الأسعار</span></button>
+              <button class="ftag" data-dim="kw">🔑 <span id="dim-kw">الكلمات</span></button>
+            </div>
+          </div>
+          <button class="btn btn-p" style="align-self:flex-start" onclick="genReport()">📄 <span id="btn-gen">إنشاء التقرير</span></button>
+          <div id="reportOut"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ─── DATA ─── */
+const DATA = {
+  companies:[
+    {id:'meh',ar:'مصر للمعدات الثقيلة',en:'Misr Heavy Equipment',de:'Misr Schwermaschinerie',city_ar:'القاهرة',city_en:'Cairo',city_de:'Kairo',region:'cairo',founded:1998,employees:320,fleet_size:215,brands:['CAT','Komatsu','Liebherr'],score:94,rank:1,rating:4.8,reviews:842,ads_count:68,monthly_budget:85000,fb_followers:42000,ig_followers:8400,yt_subs:12000,li_followers:6200,keywords_count:1240},
+    {id:'nile',ar:'النيل للإنشاءات',en:'Nile Constructions',de:'Nil Baumaschinen',city_ar:'الجيزة',city_en:'Giza',city_de:'Gizeh',region:'cairo',founded:2003,employees:248,fleet_size:168,brands:['Volvo','Hitachi','Doosan'],score:88,rank:2,rating:4.6,reviews:624,ads_count:51,monthly_budget:62000,fb_followers:28000,ig_followers:6200,yt_subs:8400,li_followers:4800,keywords_count:890},
+    {id:'capital',ar:'العاصمة للرافعات',en:'Capital Cranes',de:'Capital Krane',city_ar:'العاصمة الإدارية',city_en:'New Capital',city_de:'Neue Hauptstadt',region:'capital',founded:2020,employees:142,fleet_size:86,brands:['Liebherr','Grove','Terex'],score:82,rank:3,rating:4.4,reviews:318,ads_count:38,monthly_budget:48000,fb_followers:19000,ig_followers:4800,yt_subs:5200,li_followers:3400,keywords_count:640},
+    {id:'alex',ar:'إسكندرية للمعدات',en:'Alexandria Equipment',de:'Alexandria Geräte',city_ar:'الإسكندرية',city_en:'Alexandria',city_de:'Alexandria',region:'alex',founded:2007,employees:186,fleet_size:124,brands:['SANY','Doosan','Yuchai'],score:76,rank:4,rating:4.3,reviews:445,ads_count:29,monthly_budget:36000,fb_followers:15000,ig_followers:3200,yt_subs:4100,li_followers:2800,keywords_count:510},
+    {id:'hydro',ar:'هيدرو إيكو مصر',en:'Hydro Eco Egypt',de:'Hydro Eco Ägypten',city_ar:'القاهرة',city_en:'Cairo',city_de:'Kairo',region:'cairo',founded:2015,employees:112,fleet_size:74,brands:['Liebherr','CAT'],score:71,rank:5,rating:4.2,reviews:287,ads_count:22,monthly_budget:28000,fb_followers:11000,ig_followers:2400,yt_subs:3200,li_followers:2100,keywords_count:380},
+    {id:'arab',ar:'المقاولون العرب للآلات',en:'Arab Contractors Machinery',de:'Arab Contractors Maschinen',city_ar:'القاهرة',city_en:'Cairo',city_de:'Kairo',region:'cairo',founded:1989,employees:420,fleet_size:310,brands:['Komatsu','CAT','XCMG'],score:67,rank:6,rating:4.0,reviews:612,ads_count:18,monthly_budget:22000,fb_followers:8500,ig_followers:1800,yt_subs:2400,li_followers:4200,keywords_count:290},
+    {id:'delta',ar:'دلتا للحفريات',en:'Delta Excavations',de:'Delta Baggerarbeiten',city_ar:'المنصورة',city_en:'Mansoura',city_de:'Mansoura',region:'delta',founded:2011,employees:88,fleet_size:56,brands:['XCMG','Shantui'],score:62,rank:7,rating:3.9,reviews:198,ads_count:14,monthly_budget:16000,fb_followers:6200,ig_followers:1100,yt_subs:1800,li_followers:980,keywords_count:210},
+    {id:'sinai',ar:'سيناء للمعدات الثقيلة',en:'Sinai Heavy Equipment',de:'Sinai Schwermaschinerie',city_ar:'العريش',city_en:'Arish',city_de:'Arisch',region:'sinai',founded:2014,employees:76,fleet_size:48,brands:['Caterpillar','JCB'],score:58,rank:8,rating:3.8,reviews:142,ads_count:11,monthly_budget:12000,fb_followers:4800,ig_followers:900,yt_subs:1200,li_followers:760,keywords_count:160},
+    {id:'cranes',ar:'القاهرة للرافعات',en:'Cairo Cranes',de:'Kairo Krane',city_ar:'القاهرة',city_en:'Cairo',city_de:'Kairo',region:'cairo',founded:2016,employees:64,fleet_size:40,brands:['Liebherr','Tadano'],score:55,rank:9,rating:3.7,reviews:118,ads_count:9,monthly_budget:9000,fb_followers:3600,ig_followers:720,yt_subs:980,li_followers:580,keywords_count:130},
+    {id:'build',ar:'بناء مصر المتقدمة',en:'Advanced Egypt Build',de:'Advanced Egypt Bau',city_ar:'العاصمة الإدارية',city_en:'New Capital',city_de:'Neue Hauptstadt',region:'capital',founded:2021,employees:52,fleet_size:32,brands:['SANY','Zoomlion'],score:51,rank:10,rating:3.6,reviews:94,ads_count:7,monthly_budget:7500,fb_followers:2900,ig_followers:580,yt_subs:760,li_followers:440,keywords_count:98},
+    {id:'suez',ar:'السويس للمعدات الثقيلة',en:'Suez Heavy Equipment',de:'Suez Schwermaschinerie',city_ar:'السويس',city_en:'Suez',city_de:'Suez',region:'suez',founded:2009,employees:95,fleet_size:62,brands:['XCMG','Caterpillar'],score:48,rank:11,rating:3.5,reviews:176,ads_count:6,monthly_budget:6000,fb_followers:2400,ig_followers:480,yt_subs:620,li_followers:360,keywords_count:82},
+    {id:'upper',ar:'صعيد مصر للآليات',en:'Upper Egypt Machinery',de:'Oberägypten Maschinen',city_ar:'أسيوط',city_en:'Assiut',city_de:'Assiut',region:'upper',founded:2013,employees:68,fleet_size:44,brands:['Shantui','XGMA'],score:44,rank:12,rating:3.4,reviews:128,ads_count:5,monthly_budget:4500,fb_followers:1800,ig_followers:360,yt_subs:480,li_followers:280,keywords_count:64},
+  ],
+  keywords:[
+    {ar:'تأجير حفار',en:'Excavator rental',de:'Bagger mieten',type:'head',vol:14808,cpc:4.75,kd:46,intent:'transactional',trend:'up',opp:true},
+    {ar:'معدات ثقيلة مصر',en:'Heavy equipment Egypt',de:'Schwermaschinerie Ägypten',type:'head',vol:12300,cpc:3.20,kd:52,intent:'informational',trend:'up',opp:false},
+    {ar:'لودر للإيجار',en:'Loader for rent',de:'Lader mieten',type:'head',vol:9400,cpc:4.10,kd:38,intent:'transactional',trend:'stable',opp:true},
+    {ar:'رافعة للتأجير',en:'Crane rental',de:'Kran mieten',type:'head',vol:7200,cpc:6.80,kd:44,intent:'transactional',trend:'up',opp:true},
+    {ar:'حفار صغير إيجار',en:'Mini excavator rental',de:'Minibagger mieten',type:'body',vol:6800,cpc:3.90,kd:32,intent:'transactional',trend:'up',opp:true},
+    {ar:'بلدوزر للإيجار',en:'Bulldozer rental',de:'Bulldozer mieten',type:'body',vol:5200,cpc:3.40,kd:28,intent:'transactional',trend:'stable',opp:true},
+    {ar:'رافعة شوكية إيجار',en:'Forklift rental',de:'Gabelstapler mieten',type:'body',vol:4800,cpc:2.80,kd:24,intent:'transactional',trend:'up',opp:true},
+    {ar:'حفار كوماتسو إيجار',en:'Komatsu excavator rental',de:'Komatsu Bagger mieten',type:'body',vol:4200,cpc:5.20,kd:36,intent:'transactional',trend:'up',opp:false},
+    {ar:'معدات بناء القاهرة',en:'Cairo construction equipment',de:'Kairo Baumaschinen',type:'body',vol:3900,cpc:2.60,kd:30,intent:'informational',trend:'up',opp:true},
+    {ar:'تكلفة إيجار رافعة',en:'Crane rental cost',de:'Kranmietkosten',type:'longtail',vol:3400,cpc:4.80,kd:22,intent:'transactional',trend:'up',opp:true},
+    {ar:'حفار CAT إيجار مصر',en:'CAT excavator rental Egypt',de:'CAT Bagger mieten Ägypten',type:'longtail',vol:2800,cpc:5.60,kd:20,intent:'transactional',trend:'up',opp:true},
+    {ar:'سعر إيجار لودر يومي',en:'Daily loader rental price',de:'Täglicher Lader Mietpreis',type:'longtail',vol:2400,cpc:3.70,kd:18,intent:'transactional',trend:'stable',opp:true},
+    {ar:'شركات تأجير معدات ثقيلة',en:'Heavy equipment rental companies',de:'Schwermaschinenvermietung',type:'body',vol:4600,cpc:3.10,kd:42,intent:'navigational',trend:'stable',opp:false},
+    {ar:'معدات حفريات إسكندرية',en:'Excavation equipment Alexandria',de:'Baggergeräte Alexandria',type:'body',vol:3100,cpc:2.90,kd:26,intent:'transactional',trend:'up',opp:true},
+    {ar:'رافعة برجية إيجار',en:'Tower crane rental',de:'Turmkran mieten',type:'body',vol:5800,cpc:8.20,kd:40,intent:'transactional',trend:'up',opp:false},
+    {ar:'معدات عاصمة إدارية',en:'New capital equipment',de:'Neue Hauptstadt Ausrüstung',type:'longtail',vol:3600,cpc:4.40,kd:24,intent:'informational',trend:'up',opp:true},
+    {ar:'بلدوزر كوماتسو D6',en:'Komatsu D6 bulldozer',de:'Komatsu D6 Bulldozer',type:'longtail',vol:1900,cpc:3.20,kd:16,intent:'transactional',trend:'stable',opp:true},
+    {ar:'حفار حفر آبار',en:'Well drilling excavator',de:'Brunnenbohrbagger',type:'longtail',vol:2200,cpc:4.10,kd:19,intent:'transactional',trend:'up',opp:true},
+    {ar:'صيانة معدات ثقيلة',en:'Heavy equipment maintenance',de:'Schwermaschinenwartung',type:'body',vol:3800,cpc:2.40,kd:34,intent:'informational',trend:'stable',opp:false},
+    {ar:'إيجار رافعة مصر شهري',en:'Monthly crane rental Egypt',de:'Monatliche Kranmiete Ägypten',type:'longtail',vol:1600,cpc:5.90,kd:17,intent:'transactional',trend:'up',opp:true},
+  ],
+  ads:[
+    {co_ar:'مصر للمعدات الثقيلة',co_en:'Misr Heavy Equipment',co_de:'Misr Schwermaschinerie',platform:'Facebook',hl_ar:'احجز حفارك الآن — أسعار خاصة',hl_en:'Book Your Excavator Now — Special Prices',hl_de:'Jetzt Bagger buchen — Sonderpreise',budget:8500,imp:420000,clicks:12600,ctr:3.0,cpc:0.67},
+    {co_ar:'مصر للمعدات الثقيلة',co_en:'Misr Heavy Equipment',co_de:'Misr Schwermaschinerie',platform:'Google',hl_ar:'تأجير حفارات CAT كوماتسو',hl_en:'CAT Komatsu Excavator Rental',hl_de:'CAT Komatsu Baggervermietung',budget:6200,imp:185000,clicks:7400,ctr:4.0,cpc:0.84},
+    {co_ar:'النيل للإنشاءات',co_en:'Nile Constructions',co_de:'Nil Baumaschinen',platform:'Facebook',hl_ar:'رافعة فولفو بأقل سعر في مصر',hl_en:'Volvo Crane — Best Price in Egypt',hl_de:'Volvo Kran — Bester Preis in Ägypten',budget:5800,imp:310000,clicks:9300,ctr:3.0,cpc:0.62},
+    {co_ar:'العاصمة للرافعات',co_en:'Capital Cranes',co_de:'Capital Krane',platform:'Instagram',hl_ar:'رافعات ليبهر للعاصمة الإدارية',hl_en:'Liebherr Cranes for New Capital',hl_de:'Liebherr Krane für Neue Hauptstadt',budget:4800,imp:245000,clicks:6125,ctr:2.5,cpc:0.78},
+    {co_ar:'النيل للإنشاءات',co_en:'Nile Constructions',co_de:'Nil Baumaschinen',platform:'Google',hl_ar:'لودرات هيتاشي للإيجار الفوري',hl_en:'Hitachi Loaders — Immediate Rental',hl_de:'Hitachi Lader — Sofortvermietung',budget:4200,imp:128000,clicks:5760,ctr:4.5,cpc:0.73},
+    {co_ar:'إسكندرية للمعدات',co_en:'Alexandria Equipment',co_de:'Alexandria Geräte',platform:'Facebook',hl_ar:'SANY للإيجار — توصيل لكل إسكندرية',hl_en:'SANY Rental — Delivery Across Alexandria',hl_de:'SANY Vermietung — Lieferung in Alexandria',budget:3600,imp:198000,clicks:4950,ctr:2.5,cpc:0.73},
+    {co_ar:'مصر للمعدات الثقيلة',co_en:'Misr Heavy Equipment',co_de:'Misr Schwermaschinerie',platform:'YouTube',hl_ar:'شاهد قدرات أسطولنا — 215 معدة',hl_en:'See Our Fleet Capabilities — 215 units',hl_de:'Unsere Flottenkapazitäten — 215 Einheiten',budget:3200,imp:87000,clicks:2175,ctr:2.5,cpc:1.47},
+    {co_ar:'هيدرو إيكو مصر',co_en:'Hydro Eco Egypt',co_de:'Hydro Eco Ägypten',platform:'Facebook',hl_ar:'معدات صديقة للبيئة — CAT ليبهر',hl_en:'Eco-friendly Equipment — CAT Liebherr',hl_de:'Umweltfreundliche Geräte — CAT Liebherr',budget:2800,imp:142000,clicks:3550,ctr:2.5,cpc:0.79},
+    {co_ar:'العاصمة للرافعات',co_en:'Capital Cranes',co_de:'Capital Krane',platform:'Google',hl_ar:'رافعات Grove تيريكس — أفضل سعر',hl_en:'Grove Terex Cranes — Best Rate',hl_de:'Grove Terex Krane — Bester Preis',budget:2400,imp:72000,clicks:3240,ctr:4.5,cpc:0.74},
+    {co_ar:'المقاولون العرب للآلات',co_en:'Arab Contractors Machinery',co_de:'Arab Contractors Maschinen',platform:'Facebook',hl_ar:'أقوى أسطول في مصر — كوماتسو CAT',hl_en:'Strongest Fleet in Egypt — Komatsu CAT',hl_de:'Stärkste Flotte Ägyptens — Komatsu CAT',budget:2200,imp:118000,clicks:2360,ctr:2.0,cpc:0.93},
+    {co_ar:'دلتا للحفريات',co_en:'Delta Excavations',co_de:'Delta Baggerarbeiten',platform:'TikTok',hl_ar:'حفريات الدلتا — سرعة وكفاءة',hl_en:'Delta Excavations — Speed & Efficiency',hl_de:'Delta Baggerarbeiten — Schnelligkeit & Effizienz',budget:1600,imp:240000,clicks:4800,ctr:2.0,cpc:0.33},
+    {co_ar:'سيناء للمعدات الثقيلة',co_en:'Sinai Heavy Equipment',co_de:'Sinai Schwermaschinerie',platform:'Facebook',hl_ar:'خدمة سيناء وشرق القناة',hl_en:'Serving Sinai & East Canal Zone',hl_de:'Service für Sinai & östliche Kanalzone',budget:1200,imp:64000,clicks:1280,ctr:2.0,cpc:0.94},
+  ],
+  pricing:[
+    {ar:'حفار 20 طن',en:'20T Excavator',de:'20T Bagger',daily:2800,weekly:17500,monthly:64000,quarterly:226000,brands:'CAT/Komatsu',trend:'+8%'},
+    {ar:'حفار 30 طن',en:'30T Excavator',de:'30T Bagger',daily:4200,weekly:26000,monthly:96000,quarterly:338000,brands:'CAT/Komatsu',trend:'+12%'},
+    {ar:'لودر صغير',en:'Small Loader',de:'Kleiner Lader',daily:1800,weekly:11200,monthly:41000,quarterly:145000,brands:'XCMG',trend:'+5%'},
+    {ar:'لودر كبير',en:'Large Loader',de:'Großer Lader',daily:3200,weekly:19800,monthly:73000,quarterly:258000,brands:'CAT/Komatsu',trend:'+6%'},
+    {ar:'رافعة 50 طن',en:'50T Crane',de:'50T Kran',daily:6500,weekly:40000,monthly:148000,quarterly:522000,brands:'Liebherr/Grove',trend:'+15%'},
+    {ar:'رافعة برجية',en:'Tower Crane',de:'Turmkran',daily:8500,weekly:52500,monthly:194000,quarterly:684000,brands:'Liebherr',trend:'+18%'},
+    {ar:'رافعة زاحفة 100ط',en:'100T Crawler Crane',de:'100T Raupenkran',daily:14000,weekly:86500,monthly:320000,quarterly:1128000,brands:'Liebherr',trend:'+20%'},
+    {ar:'بلدوزر D6',en:'D6 Bulldozer',de:'D6 Bulldozer',daily:2500,weekly:15500,monthly:57000,quarterly:201000,brands:'Komatsu',trend:'ثابت'},
+    {ar:'رافعة شوكية 5ط',en:'5T Forklift',de:'5T Gabelstapler',daily:850,weekly:5200,monthly:19000,quarterly:67000,brands:'Linde/Hyster',trend:'+4%'},
+    {ar:'حفار صغير',en:'Mini Excavator',de:'Minibagger',daily:1200,weekly:7400,monthly:27000,quarterly:95000,brands:'Bobcat/Kubota',trend:'+10%'},
+  ],
+  regions:[
+    {ar:'القاهرة والجيزة',en:'Cairo & Giza',de:'Kairo & Gizeh',count:6,pct:50},
+    {ar:'العاصمة الإدارية',en:'New Capital',de:'Neue Hauptstadt',count:2,pct:17},
+    {ar:'الإسكندرية',en:'Alexandria',de:'Alexandria',count:1,pct:8},
+    {ar:'الدلتا',en:'Delta',de:'Delta',count:1,pct:8},
+    {ar:'الصعيد',en:'Upper Egypt',de:'Oberägypten',count:1,pct:8},
+    {ar:'سيناء والقناة',en:'Sinai & Canal',de:'Sinai & Kanal',count:2,pct:17},
+  ],
+  notifications:[
+    {ar_t:'إعلان جديد: مصر للمعدات',en_t:'New Ad: Misr Heavy Equipment',de_t:'Neue Anzeige: Misr Schwermaschinerie',ar_s:'رفعت ميزانيتها بـ 12%',en_s:'Budget increased by 12%',de_s:'Budget um 12% erhöht',time_ar:'منذ ساعتين',time_en:'2h ago',time_de:'vor 2h'},
+    {ar_t:'النيل للإنشاءات — المركز 2',en_t:'Nile Constructions — Rank 2',de_t:'Nil Baumaschinen — Rang 2',ar_s:'نقاط التفاعل ارتفعت +3.2%',en_s:'Engagement up +3.2%',de_s:'Engagement +3,2%',time_ar:'منذ 5 ساعات',time_en:'5h ago',time_de:'vor 5h'},
+    {ar_t:'147 كلمة مفتاحية جديدة',en_t:'147 New Keywords Discovered',de_t:'147 neue Keywords entdeckt',ar_s:'فرص منخفضة المنافسة',en_s:'Low competition opportunities',de_s:'Chancen mit niedrigem Wettbewerb',time_ar:'منذ يوم',time_en:'1 day ago',time_de:'vor 1 Tag'},
+  ],
+  hashtags:['#معدات_ثقيلة','#تأجير_حفار','#بناء_مصر','#العاصمة_الإدارية','#heavy_equipment','#excavator_rental','#كوماتسو','#CAT_Egypt','#رافعات','#Liebherr','#crane_rental','#construction_egypt','#لودر','#بلدوزر'],
+  drivers:[
+    {ar:'مشاريع العاصمة الإدارية الجديدة',en:'New Administrative Capital Projects',de:'Neue Verwaltungshauptstadtprojekte',v:95},
+    {ar:'مبادرة حياة كريمة — 5000 قرية',en:'Decent Life Initiative — 5000 Villages',de:'Decent Life Initiative — 5000 Dörfer',v:88},
+    {ar:'توسعات البنية التحتية الساحلية',en:'Coastal Infrastructure Expansions',de:'Küsteninfrastrukturerweiterungen',v:82},
+    {ar:'مشاريع الطاقة والطاقة المتجددة',en:'Energy & Renewable Energy Projects',de:'Energie & Erneuerbare Energieprojekte',v:75},
+    {ar:'التوسع في قطاع التعدين والموارد',en:'Mining & Resources Sector Expansion',de:'Bergbau & Ressourcen Expansion',v:68},
+  ],
+};
+
+/* ─── I18N ─── */
+const T={
+  ar:{
+    'nav-overview':'نظرة شاملة','nav-competitors':'المنافسون','nav-keywords':'الكلمات المفتاحية',
+    'nav-ads':'الإعلانات','nav-social':'السوشيال ميديا','nav-pricing':'الأسعار والتكاليف',
+    'nav-market':'تحليل السوق','nav-reports':'التقارير',
+    'ptab-overview':'نظرة شاملة','ptab-competitors':'المنافسون','ptab-keywords':'الكلمات',
+    'ptab-ads':'الإعلانات','ptab-social':'السوشيال','ptab-pricing':'الأسعار','ptab-market':'السوق','ptab-reports':'التقارير',
+    sbBrand:'بصمة رقمية',sbSub:'سوق المعدات الثقيلة — مصر',sbUpdate:'آخر تحديث: مارس 2026',
+    sbSecMain:'الرئيسية',sbSecAnalysis:'التحليل',sbSecMarket:'السوق',sbThemeLabel:'🎨 ثيم العرض',
+    'th-midnight':'ليلي أزرق','th-desert':'ذهب الصحراء','th-emerald':'زمرد داكن','th-arctic':'أبيض قطبي',
+    badgeLive:'مباشر',mobBrand:'بصمة رقمية',sbUpdate:'آخر تحديث: مارس 2026',
+    btnExport:'تصدير',btnSearch:'بحث',
+    mp1:'شركة',mp2:'ج.م حجم السوق',mp3:'كلمة مفتاحية',mp4:'إعلان نشط',
+    phTitle:'📊 لوحة الذكاء — نظرة شاملة',phSub:'سوق المعدات الثقيلة في مصر · بيانات مارس 2026',
+    'ph-competitors-title':'🏢 تحليل المنافسين','ph-competitors-sub':'52 شركة · بيانات رقمية كاملة',
+    'ph-keywords-title':'🔑 الكلمات المفتاحية','ph-keywords-sub':'990 كلمة محللة · فرص البحث العضوي',
+    'ph-ads-title':'📢 استخبارات الإعلانات','ph-ads-sub':'342 إعلان نشط · 578K ج.م/شهر',
+    'ph-social-title':'📱 السوشيال ميديا','ph-social-sub':'224K متابع · 4.7% معدل تفاعل',
+    'ph-pricing-title':'💰 الأسعار والتكاليف','ph-pricing-sub':'إيجار يومي · أسبوعي · شهري',
+    'ph-market-title':'📈 تحليل السوق','ph-market-sub':'TAM 14.2B · SAM 4.7B · SOM 800M ج.م',
+    'ph-reports-title':'📄 التقارير والمقارنات','ph-reports-sub':'12 تقرير شركة · 4 تقارير سوق',
+    'st-ov-main':'الرئيسية','st-ov-map':'الخريطة','st-ov-health':'صحة السوق',
+    'st-co-list':'قائمة الشركات','st-co-cmp':'مقارنة','st-co-charts':'رسوم بيانية',
+    'st-kw-all':'كل الكلمات','st-kw-opps':'الفرص الذهبية','st-kw-charts':'التحليل',
+    'st-ad-gal':'معرض الإعلانات','st-ad-budg':'الميزانيات','st-ad-ins':'الرؤى',
+    'st-soc-plat':'المنصات','st-soc-cont':'المحتوى','st-soc-sent':'المشاعر',
+    'st-pr-tbl':'جدول الأسعار','st-pr-calc':'الحاسبة','st-pr-cmp':'مقارنة الأسعار',
+    'st-mk-ov':'نظرة السوق','st-mk-seg':'القطاعات','st-mk-grow':'النمو 2020–2028',
+    'st-rep-co':'تقارير الشركات','st-rep-mkt':'تقارير السوق','st-rep-build':'منشئ التقارير',
+    'ct-ms':'حصة السوق الرقمية','cs-ms':'أعلى 8 شركات','ct-top':'أبرز المنافسين',
+    'ct-trend':'الاتجاه الشهري','ct-equip':'أنواع المعدات','ct-brands':'العلامات',
+    'ct-kw':'أعلى الكلمات','ct-soc':'الحضور الرقمي','ct-price':'لقطة الأسعار','cs-price':'إيجار يومي (ج.م)',
+    'ct-health':'صحة السوق','ct-map':'التوزيع الجغرافي','cs-map':'اضغط على مدينة',
+    'ct-region':'توزيع الشركات','hc-comp':'حدة المنافسة','hv-comp':'عالية جداً','hc-grow':'نمو الطلب',
+    'hc-proj':'المشاريع النشطة','hv-proj':'مشروع إنشائي جارٍ في مصر','ct-drivers':'محركات السوق',
+    'ct-cmp':'مقارنة شركتين','btn-cmp':'قارن','ct-dp':'الحضور الرقمي','ct-adbudg':'ميزانية الإعلانات',
+    'ct-socfol':'المتابعون','ct-fleet':'الأسطول',
+    'opt-all-reg':'كل المناطق','opt-all-types':'كل الأنواع','opt-all-int':'كل النوايا',
+    'opt-all-plat':'كل المنصات','sort-score':'ترتيب: النقاط','sort-budget':'الميزانية','sort-fleet':'الأسطول',
+    'opp-only-txt':'الفرص فقط','ct-golden':'الفرص الذهبية','cs-golden':'منخفضة المنافسة · عالية الإيرادات',
+    'ct-kwvol':'حجم البحث','ct-kwint':'النوايا','ct-kwcpc':'أعلى CPC','ct-kwtype':'أنواع الكلمات',
+    'ct-budgco':'الميزانية بالشركة','ct-platdist':'توزيع المنصات','ct-budgtbl':'جدول الميزانيات',
+    'ct-adtrend':'اتجاه الإعلانات','ct-adtime':'أفضل أوقات النشر',
+    'ct-folgrow':'نمو المتابعين','ct-er':'معدل التفاعل','ct-ctypes':'أنواع المحتوى',
+    'ct-besttimes':'أفضل الأوقات','ct-hashtags':'الهاشتاجات','ct-sentdist':'توزيع المشاعر','ct-reviews':'أحدث المراجعات',
+    'ct-fulltbl':'جدول الأسعار الكامل','cs-fulltbl':'إيجار يومي · أسبوعي · شهري · ربع سنوي (ج.م مصري)',
+    'calc-equip-lbl':'نوع المعدة','calc-days-lbl':'عدد الأيام:','calc-units-lbl':'عدد الوحدات:','calc-est-lbl':'التكلفة التقديرية',
+    'ct-calc':'حاسبة الإيجار','ct-priceTrend':'اتجاهات الأسعار','ct-priceCmp':'مقارنة أسعار الشركات',
+    'ct-geodem':'الطلب الجغرافي','ct-eqdem':'طلب المعدات','ct-sectdem':'القطاعات','ct-brandorig':'أصل العلامات',
+    'ct-mkgrow':'نمو السوق 2020–2028',
+    'ct-builder':'منشئ التقارير المخصصة','lbl-selco':'اختر الشركات (حتى 5)','lbl-seldim':'اختر أبعاد التقرير',
+    'dim-digital':'الحضور الرقمي','dim-ads':'الإعلانات','dim-social':'السوشيال','dim-pricing':'الأسعار','dim-kw':'الكلمات',
+    'btn-gen':'إنشاء التقرير','gsInline':'ابحث عن شركة، كلمة مفتاحية، إعلان...',
+    coSearch:'ابحث عن شركة...',kwSearch:'ابحث عن كلمة مفتاحية...',adSearch:'ابحث عن إعلان...',spInput:'ابحث في كل شيء...',
+    th_eq:'المعدة',th_d:'يومي',th_w:'أسبوعي',th_m:'شهري',th_q:'ربع سنوي',th_br:'العلامة',th_tr:'الاتجاه',
+    th_kw:'الكلمة',th_type:'النوع',th_vol:'الحجم/شهر',th_cpc:'CPC ج.م',th_kd:'صعوبة KD',th_intent:'النية',th_opp:'فرصة',
+    'ct-mk-ov':'نظرة السوق',
+  },
+  en:{
+    'nav-overview':'Overview','nav-competitors':'Competitors','nav-keywords':'Keywords',
+    'nav-ads':'Ads Intelligence','nav-social':'Social Media','nav-pricing':'Pricing',
+    'nav-market':'Market Analysis','nav-reports':'Reports',
+    'ptab-overview':'Overview','ptab-competitors':'Competitors','ptab-keywords':'Keywords',
+    'ptab-ads':'Ads','ptab-social':'Social','ptab-pricing':'Pricing','ptab-market':'Market','ptab-reports':'Reports',
+    sbBrand:'Bsma Raqamia',sbSub:'Egypt Heavy Equipment Market',sbUpdate:'Last update: March 2026',
+    sbSecMain:'Main',sbSecAnalysis:'Analysis',sbSecMarket:'Market',sbThemeLabel:'🎨 Theme',
+    'th-midnight':'Midnight Blue','th-desert':'Desert Gold','th-emerald':'Dark Emerald','th-arctic':'Arctic White',
+    badgeLive:'Live',mobBrand:'Bsma Raqamia',
+    btnExport:'Export',btnSearch:'Search',
+    mp1:'companies',mp2:'EGP Market Size',mp3:'keywords',mp4:'active ads',
+    phTitle:'📊 Intelligence Dashboard — Overview',phSub:'Egypt Heavy Equipment Market · March 2026',
+    'ph-competitors-title':'🏢 Competitor Analysis','ph-competitors-sub':'52 Companies · Full Digital Data',
+    'ph-keywords-title':'🔑 Keyword Research','ph-keywords-sub':'990 Keywords Analyzed · SEO Opportunities',
+    'ph-ads-title':'📢 Ads Intelligence','ph-ads-sub':'342 Active Ads · EGP 578K/month',
+    'ph-social-title':'📱 Social Media Intelligence','ph-social-sub':'224K Followers · 4.7% Engagement',
+    'ph-pricing-title':'💰 Pricing & Costs','ph-pricing-sub':'Daily · Weekly · Monthly Rates',
+    'ph-market-title':'📈 Market Analysis','ph-market-sub':'TAM 14.2B · SAM 4.7B · SOM 800M EGP',
+    'ph-reports-title':'📄 Reports & Comparisons','ph-reports-sub':'12 Company Reports · 4 Market Reports',
+    'st-ov-main':'Main','st-ov-map':'Map','st-ov-health':'Market Health',
+    'st-co-list':'Company List','st-co-cmp':'Compare','st-co-charts':'Charts',
+    'st-kw-all':'All Keywords','st-kw-opps':'Golden Opps','st-kw-charts':'Analysis',
+    'st-ad-gal':'Ad Gallery','st-ad-budg':'Budgets','st-ad-ins':'Insights',
+    'st-soc-plat':'Platforms','st-soc-cont':'Content','st-soc-sent':'Sentiment',
+    'st-pr-tbl':'Price Table','st-pr-calc':'Calculator','st-pr-cmp':'Price Comparison',
+    'st-mk-ov':'Market Overview','st-mk-seg':'Segments','st-mk-grow':'Growth 2020–2028',
+    'st-rep-co':'Company Reports','st-rep-mkt':'Market Reports','st-rep-build':'Report Builder',
+    'ct-ms':'Digital Market Share','cs-ms':'Top 8 companies','ct-top':'Top Competitors',
+    'ct-trend':'Monthly Trend','ct-equip':'Equipment Types','ct-brands':'Brands',
+    'ct-kw':'Top Keywords','ct-soc':'Social Presence','ct-price':'Pricing Snapshot','cs-price':'Daily rental (EGP)',
+    'ct-health':'Market Health','ct-map':'Geographic Distribution','cs-map':'Click a city',
+    'ct-region':'Company Distribution','hc-comp':'Competition Intensity','hv-comp':'Very High','hc-grow':'Demand Growth',
+    'hc-proj':'Active Projects','hv-proj':'Active construction projects in Egypt','ct-drivers':'Market Drivers',
+    'ct-cmp':'Compare Two Companies','btn-cmp':'Compare','ct-dp':'Digital Presence','ct-adbudg':'Ad Budgets',
+    'ct-socfol':'Followers','ct-fleet':'Fleet Size',
+    'opt-all-reg':'All Regions','opt-all-types':'All Types','opt-all-int':'All Intents',
+    'opt-all-plat':'All Platforms','sort-score':'Sort: Score','sort-budget':'Budget','sort-fleet':'Fleet',
+    'opp-only-txt':'Opportunities Only','ct-golden':'Golden Opportunities','cs-golden':'Low competition · High revenue',
+    'ct-kwvol':'Search Volume','ct-kwint':'Intents','ct-kwcpc':'Highest CPC','ct-kwtype':'Keyword Types',
+    'ct-budgco':'Budget by Company','ct-platdist':'Platform Distribution','ct-budgtbl':'Budget Table',
+    'ct-adtrend':'Ad Trend','ct-adtime':'Best Posting Times',
+    'ct-folgrow':'Follower Growth','ct-er':'Engagement Rate','ct-ctypes':'Content Types',
+    'ct-besttimes':'Best Times','ct-hashtags':'Hashtags','ct-sentdist':'Sentiment Distribution','ct-reviews':'Recent Reviews',
+    'ct-fulltbl':'Complete Price Table','cs-fulltbl':'Daily · Weekly · Monthly · Quarterly (EGP)',
+    'calc-equip-lbl':'Equipment Type','calc-days-lbl':'Days:','calc-units-lbl':'Units:','calc-est-lbl':'Estimated Cost',
+    'ct-calc':'Rental Calculator','ct-priceTrend':'Price Trends','ct-priceCmp':'Company Price Comparison',
+    'ct-geodem':'Geographic Demand','ct-eqdem':'Equipment Demand','ct-sectdem':'Sectors','ct-brandorig':'Brand Origin',
+    'ct-mkgrow':'Market Growth 2020–2028',
+    'ct-builder':'Custom Report Builder','lbl-selco':'Select Companies (up to 5)','lbl-seldim':'Select Report Dimensions',
+    'dim-digital':'Digital Presence','dim-ads':'Ads','dim-social':'Social','dim-pricing':'Pricing','dim-kw':'Keywords',
+    'btn-gen':'Generate Report','gsInline':'Search companies, keywords, ads...',
+    coSearch:'Search companies...',kwSearch:'Search keywords...',adSearch:'Search ads...',spInput:'Search everything...',
+    th_eq:'Equipment',th_d:'Daily',th_w:'Weekly',th_m:'Monthly',th_q:'Quarterly',th_br:'Brand',th_tr:'Trend',
+    th_kw:'Keyword',th_type:'Type',th_vol:'Monthly Vol.',th_cpc:'CPC EGP',th_kd:'KD',th_intent:'Intent',th_opp:'Opp.',
+    'ct-mk-ov':'Market Overview',
+  },
+  de:{
+    'nav-overview':'Übersicht','nav-competitors':'Wettbewerber','nav-keywords':'Keywords',
+    'nav-ads':'Anzeigen-Intelligence','nav-social':'Social Media','nav-pricing':'Preise',
+    'nav-market':'Marktanalyse','nav-reports':'Berichte',
+    'ptab-overview':'Übersicht','ptab-competitors':'Wettbewerber','ptab-keywords':'Keywords',
+    'ptab-ads':'Anzeigen','ptab-social':'Social','ptab-pricing':'Preise','ptab-market':'Markt','ptab-reports':'Berichte',
+    sbBrand:'Bsma Raqamia',sbSub:'Ägypten Schwermaschinensektor',sbUpdate:'Letzte Aktualisierung: März 2026',
+    sbSecMain:'Haupt',sbSecAnalysis:'Analyse',sbSecMarket:'Markt',sbThemeLabel:'🎨 Thema',
+    'th-midnight':'Mitternachtsblau','th-desert':'Wüstengold','th-emerald':'Dunkles Smaragd','th-arctic':'Arktisches Weiß',
+    badgeLive:'Live',mobBrand:'Bsma Raqamia',
+    btnExport:'Exportieren',btnSearch:'Suchen',
+    mp1:'Unternehmen',mp2:'EGP Marktgröße',mp3:'Keywords',mp4:'aktive Anzeigen',
+    phTitle:'📊 Intelligence-Dashboard — Übersicht',phSub:'Ägypten Schwermaschinensektor · März 2026',
+    'ph-competitors-title':'🏢 Wettbewerberanalyse','ph-competitors-sub':'52 Unternehmen · Vollständige digitale Daten',
+    'ph-keywords-title':'🔑 Keyword-Recherche','ph-keywords-sub':'990 Keywords analysiert',
+    'ph-ads-title':'📢 Anzeigen-Intelligence','ph-ads-sub':'342 aktive Anzeigen · EGP 578K/Monat',
+    'ph-social-title':'📱 Social Media Intelligence','ph-social-sub':'224K Follower · 4,7% Engagement',
+    'ph-pricing-title':'💰 Preise & Kosten','ph-pricing-sub':'Täglich · Wöchentlich · Monatlich',
+    'ph-market-title':'📈 Marktanalyse','ph-market-sub':'TAM 14,2B · SAM 4,7B · SOM 800M EGP',
+    'ph-reports-title':'📄 Berichte & Vergleiche','ph-reports-sub':'12 Unternehmensberichte · 4 Marktberichte',
+    'st-ov-main':'Haupt','st-ov-map':'Karte','st-ov-health':'Marktgesundheit',
+    'st-co-list':'Unternehmensliste','st-co-cmp':'Vergleich','st-co-charts':'Diagramme',
+    'st-kw-all':'Alle Keywords','st-kw-opps':'Goldene Chancen','st-kw-charts':'Analyse',
+    'st-ad-gal':'Anzeigengalerie','st-ad-budg':'Budgets','st-ad-ins':'Einblicke',
+    'st-soc-plat':'Plattformen','st-soc-cont':'Inhalte','st-soc-sent':'Stimmung',
+    'st-pr-tbl':'Preistabelle','st-pr-calc':'Rechner','st-pr-cmp':'Preisvergleich',
+    'st-mk-ov':'Marktübersicht','st-mk-seg':'Segmente','st-mk-grow':'Wachstum 2020–2028',
+    'st-rep-co':'Unternehmensberichte','st-rep-mkt':'Marktberichte','st-rep-build':'Berichtersteller',
+    'ct-ms':'Digitaler Marktanteil','cs-ms':'Top 8 Unternehmen','ct-top':'Top Wettbewerber',
+    'ct-trend':'Monatlicher Trend','ct-equip':'Gerätetypen','ct-brands':'Marken',
+    'ct-kw':'Top Keywords','ct-soc':'Digitale Präsenz','ct-price':'Preisübersicht','cs-price':'Tagesmiete (EGP)',
+    'ct-health':'Marktgesundheit','ct-map':'Geografische Verteilung','cs-map':'Stadt anklicken',
+    'ct-region':'Unternehmensverteilung','hc-comp':'Wettbewerbsintensität','hv-comp':'Sehr Hoch','hc-grow':'Nachfragewachstum',
+    'hc-proj':'Aktive Projekte','hv-proj':'Aktive Bauprojekte in Ägypten','ct-drivers':'Markttreiber',
+    'ct-cmp':'Zwei Unternehmen vergleichen','btn-cmp':'Vergleichen','ct-dp':'Digitale Präsenz','ct-adbudg':'Anzeigenbudgets',
+    'ct-socfol':'Follower','ct-fleet':'Flottengrößen',
+    'opt-all-reg':'Alle Regionen','opt-all-types':'Alle Typen','opt-all-int':'Alle Absichten',
+    'opt-all-plat':'Alle Plattformen','sort-score':'Sortieren: Score','sort-budget':'Budget','sort-fleet':'Flotte',
+    'opp-only-txt':'Nur Chancen','ct-golden':'Goldene Chancen','cs-golden':'Niedriger Wettbewerb · Hohe Einnahmen',
+    'ct-kwvol':'Suchvolumen','ct-kwint':'Absichten','ct-kwcpc':'Höchster CPC','ct-kwtype':'Keyword-Typen',
+    'ct-budgco':'Budget nach Unternehmen','ct-platdist':'Plattformverteilung','ct-budgtbl':'Budgettabelle',
+    'ct-adtrend':'Anzeigentrend','ct-adtime':'Beste Veröffentlichungszeiten',
+    'ct-folgrow':'Follower-Wachstum','ct-er':'Engagement-Rate','ct-ctypes':'Inhaltstypen',
+    'ct-besttimes':'Beste Zeiten','ct-hashtags':'Hashtags','ct-sentdist':'Stimmungsverteilung','ct-reviews':'Neueste Bewertungen',
+    'ct-fulltbl':'Vollständige Preistabelle','cs-fulltbl':'Täglich · Wöchentlich · Monatlich · Vierteljährlich (EGP)',
+    'calc-equip-lbl':'Gerätetyp','calc-days-lbl':'Tage:','calc-units-lbl':'Einheiten:','calc-est-lbl':'Geschätzte Kosten',
+    'ct-calc':'Mietrechner','ct-priceTrend':'Preistrends','ct-priceCmp':'Unternehmenspreisvergleich',
+    'ct-geodem':'Geografische Nachfrage','ct-eqdem':'Gerätebedarf','ct-sectdem':'Sektoren','ct-brandorig':'Markenherkunft',
+    'ct-mkgrow':'Marktwachstum 2020–2028',
+    'ct-builder':'Benutzerdefinierter Berichtersteller','lbl-selco':'Unternehmen auswählen (bis 5)','lbl-seldim':'Berichtsdimensionen wählen',
+    'dim-digital':'Digitale Präsenz','dim-ads':'Anzeigen','dim-social':'Social','dim-pricing':'Preise','dim-kw':'Keywords',
+    'btn-gen':'Bericht erstellen','gsInline':'Unternehmen, Keywords, Anzeigen suchen...',
+    coSearch:'Unternehmen suchen...',kwSearch:'Keywords suchen...',adSearch:'Anzeigen suchen...',spInput:'Alles durchsuchen...',
+    th_eq:'Gerät',th_d:'Täglich',th_w:'Wöchentlich',th_m:'Monatlich',th_q:'Vierteljährlich',th_br:'Marke',th_tr:'Trend',
+    th_kw:'Keyword',th_type:'Typ',th_vol:'Monatl. Vol.',th_cpc:'CPC EGP',th_kd:'KD',th_intent:'Absicht',th_opp:'Chance',
+    'ct-mk-ov':'Marktübersicht',
+  }
+};
+
+/* ─── State ─── */
+let lang = localStorage.getItem('bsmaLang')||'ar';
+let theme = localStorage.getItem('bsmaTheme')||'midnight';
+let currentPage = 'overview';
+let coSort = 'score';
+let kwOppOnly = false;
+let builderSelected = [];
+const charts = {};
+
+/* ─── Helpers ─── */
+function t(k){ return (T[lang]||T.ar)[k]||(T.ar)[k]||k; }
+function nm(c){ return lang==='ar'?c.ar:lang==='de'?(c.de||c.en):c.en; }
+function ncity(c){ return lang==='ar'?c.city_ar:lang==='de'?(c.city_de||c.city_en):c.city_en; }
+function nprice(p){ return lang==='ar'?p.ar:lang==='de'?(p.de||p.en):p.en; }
+function nkw(k){ return lang==='ar'?k.ar:lang==='de'?(k.de||k.en):k.en; }
+function nad(a){ return lang==='ar'?a.hl_ar:lang==='de'?(a.hl_de||a.hl_en):a.hl_en; }
+function naco(a){ return lang==='ar'?a.co_ar:lang==='de'?(a.co_de||a.co_en):a.co_en; }
+function fmtN(n){ return Number(n).toLocaleString(); }
+function cv(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+function mkChart(id,cfg){
+  if(charts[id]) try{charts[id].destroy();}catch(e){}
+  const el=document.getElementById(id); if(!el) return null;
+  charts[id]=new Chart(el.getContext('2d'),cfg); return charts[id];
+}
+function gO(){ return {grid:{color:cv('--br')},ticks:{color:cv('--txd'),font:{family:lang==='ar'?'Cairo':'IBM Plex Sans',size:10}}}; }
+function lO(){ return {labels:{color:cv('--txm'),font:{family:lang==='ar'?'Cairo':'IBM Plex Sans',size:11},boxWidth:10,padding:8}}; }
+function months(){ return lang==='ar'?['أبر','مايو','يون','يول','أغس','سبت','أكت','نوف','ديس','يناير','فبر','مارس']:['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar']; }
+
+/* ─── THEME ─── */
+function setTheme(th,btn){
+  theme=th; localStorage.setItem('bsmaTheme',th);
+  document.documentElement.setAttribute('data-theme',th);
+  document.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  setTimeout(()=>{ Object.keys(charts).forEach(id=>{try{charts[id].destroy();}catch(e){}}); renderPage(currentPage); },120);
+}
+
+/* ─── LANG ─── */
+function setLang(l,btn){
+  lang=l; localStorage.setItem('bsmaLang',l);
+  document.documentElement.setAttribute('lang',l==='ar'?'ar':'en');
+  document.documentElement.setAttribute('dir',l==='ar'?'rtl':'ltr');
+  document.documentElement.setAttribute('data-lang',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  applyT(); renderPage(currentPage);
+}
+
+function applyT(){
+  // Update all translatable elements by id
+  Object.keys(T.ar).forEach(k=>{
+    const el=document.getElementById(k);
+    if(el){
+      if(el.tagName==='INPUT'||el.tagName==='SELECT') el.placeholder=t(k);
+      else el.textContent=t(k);
+    }
+  });
+  // Placeholders
+  ['gsInline','coSearch','kwSearch','adSearch'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.placeholder=t(id);
+  });
+  document.getElementById('spInput')&&(document.getElementById('spInput').placeholder=t('spInput'));
+  // Page header
+  updatePH();
+}
+
+function updatePH(){
+  const titles={
+    overview:{t:'phTitle',s:'phSub'},
+    competitors:{t:'ph-competitors-title',s:'ph-competitors-sub'},
+    keywords:{t:'ph-keywords-title',s:'ph-keywords-sub'},
+    ads:{t:'ph-ads-title',s:'ph-ads-sub'},
+    social:{t:'ph-social-title',s:'ph-social-sub'},
+    pricing:{t:'ph-pricing-title',s:'ph-pricing-sub'},
+    market:{t:'ph-market-title',s:'ph-market-sub'},
+    reports:{t:'ph-reports-title',s:'ph-reports-sub'},
+  };
+  const pg=titles[currentPage]||titles.overview;
+  const tEl=document.getElementById('phTitle'), sEl=document.getElementById('phSub');
+  if(tEl) tEl.textContent=t(pg.t);
+  if(sEl) sEl.textContent=t(pg.s);
+}
+
+/* ─── NAVIGATION ─── */
+function gotoPage(page, navEl, tabEl){
+  currentPage=page;
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(navEl) navEl.classList.add('active');
+  else { // find matching nav-item
+    document.querySelectorAll('.nav-item').forEach(n=>{ if(n.getAttribute('onclick')&&n.getAttribute('onclick').includes("'"+page+"'")) n.classList.add('active'); });
+  }
+  document.querySelectorAll('.page-panel').forEach(p=>p.classList.remove('active'));
+  const pg=document.getElementById('pg-'+page); if(pg) pg.classList.add('active');
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  if(tabEl) tabEl.classList.add('active');
+  else { document.querySelectorAll('.ptab').forEach(t=>{ if(t.getAttribute('onclick')&&t.getAttribute('onclick').includes("'"+page+"'")) t.classList.add('active'); }); }
+  updatePH(); renderPage(page);
+  closeSidebar();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function subTab(page, sub, btn){
+  const parent=document.getElementById('pg-'+page); if(!parent) return;
+  parent.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
+  const sp=document.getElementById('sp-'+page+'-'+sub); if(sp) sp.classList.add('active');
+  parent.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderSub(page,sub);
+}
+
+/* ─── RENDER ROUTER ─── */
+function renderPage(p){
+  switch(p){
+    case 'overview': renderOverview(); break;
+    case 'competitors': renderCompetitors(); break;
+    case 'keywords': renderKeywords(); break;
+    case 'ads': renderAds(); break;
+    case 'social': renderSocial(); break;
+    case 'pricing': renderPricing(); break;
+    case 'market': renderMarket(); break;
+    case 'reports': renderReports(); break;
+  }
+}
+function renderSub(page, sub){
+  if(page==='overview'){if(sub==='map')renderMap();if(sub==='health')renderHealth();}
+  if(page==='competitors'){if(sub==='compare')renderCmpSel();if(sub==='charts')renderCoCharts();}
+  if(page==='keywords'){if(sub==='opps')renderOpps();if(sub==='charts')renderKwCharts();}
+  if(page==='ads'){if(sub==='budgets')renderAdBudgets();if(sub==='insights')renderAdInsights();}
+  if(page==='social'){if(sub==='content')renderSocContent();if(sub==='sent')renderSentiment();}
+  if(page==='pricing'){if(sub==='calc'){buildCalc();updateCalc();}if(sub==='cmp')renderPriceCmp();}
+  if(page==='market'){if(sub==='segments')renderMktSegments();if(sub==='growth')renderMktGrowth();}
+  if(page==='reports'){if(sub==='mkt')renderMktReports();if(sub==='build')renderBuilder();}
+}
+
+/* ═══════════════════════════════════════════
+   OVERVIEW
+═══════════════════════════════════════════ */
+function renderOverview(){
+  // KPIs
+  const el=document.getElementById('ovKPIs');
+  if(el) el.innerHTML=[
+    {cls:'bl',ic:'🏢',val:'52',label:lang==='ar'?'شركة منافسة نشطة':lang==='de'?'Aktive Wettbewerber':'Active Competing Companies',ch:'↑ '+(lang==='ar'?'+8 هذا الربع':'+8 this quarter')},
+    {cls:'gr',ic:'💰',val:'4.7B',label:lang==='ar'?'ج.م حجم السوق':lang==='de'?'EGP Marktgröße':'EGP Market Size',ch:'↑ +18%'},
+    {cls:'or',ic:'🔑',val:'990',label:lang==='ar'?'كلمة مفتاحية محللة':'Keywords Analyzed',ch:'↑ '+(lang==='ar'?'147 فرصة':'147 Opps')},
+    {cls:'re',ic:'📢',val:'342',label:lang==='ar'?'إعلان رقمي نشط':lang==='de'?'Aktive Anzeigen':'Active Digital Ads',ch:'↑ 578K '+(lang==='ar'?'ج.م/شهر':'EGP/Mo')},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div><div class="kpi-ch">${k.ch}</div></div>`).join('');
+
+  renderTopCo();
+  renderPricingSnap();
+  renderHealthStats();
+  drawOverviewCharts();
+  renderNotifs();
+}
+
+function renderTopCo(){
+  const el=document.getElementById('topCoList'); if(!el) return;
+  const sorted=[...DATA.companies].sort((a,b)=>b.score-a.score).slice(0,7);
+  el.innerHTML=sorted.map((c,i)=>{
+    const g=['linear-gradient(135deg,#f59e0b,#fbbf24)','linear-gradient(135deg,#94a3b8,#cbd5e1)','linear-gradient(135deg,#b45309,#d97706)'];
+    const bg=i<3?g[i]:'linear-gradient(135deg,var(--p),var(--pl))';
+    const tc=i<2?'#000':'#fff';
+    return `<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--br);cursor:pointer" onclick="openCoModal('${c.id}')">
+      <div style="width:22px;height:22px;border-radius:6px;background:${bg};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:${tc};flex-shrink:0">${i+1}</div>
+      <div style="flex:1;min-width:0"><div style="font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${nm(c)}</div><div style="font-size:10px;color:var(--txd)">${ncity(c)}</div></div>
+      <div style="width:90px"><div class="sbar"><div class="sbar-i sbar-bl" style="width:${c.score}%"></div></div></div>
+      <div style="font-size:12px;font-weight:800;color:var(--pl);min-width:26px;text-align:left">${c.score}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderPricingSnap(){
+  const hd=document.getElementById('priceSnapHead');
+  const bd=document.getElementById('priceSnapBody');
+  if(!hd||!bd) return;
+  hd.innerHTML=`<tr>${[t('th_eq'),t('th_d'),t('th_w'),t('th_m'),t('th_tr')].map(h=>`<th>${h}</th>`).join('')}</tr>`;
+  bd.innerHTML=DATA.pricing.slice(0,6).map(p=>`<tr>
+    <td class="td-b">${nprice(p)}</td>
+    <td style="color:var(--al);font-weight:800">${fmtN(p.daily)}</td>
+    <td>${fmtN(p.weekly)}</td>
+    <td>${fmtN(p.monthly)}</td>
+    <td style="color:${p.trend.includes('-')?'var(--rl)':p.trend==='ثابت'||p.trend==='Stable'?'var(--txm)':'var(--sl)'}">${p.trend}</td>
+  </tr>`).join('');
+}
+
+function renderHealthStats(){
+  const el=document.getElementById('healthStats'); if(!el) return;
+  const rows=[
+    {l:{ar:'🌡️ حدة المنافسة',en:'🌡️ Competition',de:'🌡️ Wettbewerb'},v:{ar:'عالية جداً',en:'Very High',de:'Sehr Hoch'},c:'var(--rl)'},
+    {l:{ar:'📈 نمو الطلب',en:'📈 Demand Growth',de:'📈 Nachfragewachstum'},v:{ar:'↑ +18%',en:'↑ +18%',de:'↑ +18%'},c:'var(--sl)'},
+    {l:{ar:'🏗️ مشاريع نشطة',en:'🏗️ Active Projects',de:'🏗️ Aktive Projekte'},v:{ar:'340+',en:'340+',de:'340+'},c:'var(--tx)'},
+    {l:{ar:'💲 TAM',en:'💲 TAM',de:'💲 TAM'},v:{ar:'14.2B ج.م',en:'EGP 14.2B',de:'EGP 14,2B'},c:'var(--pl)'},
+    {l:{ar:'🎯 SAM',en:'🎯 SAM',de:'🎯 SAM'},v:{ar:'4.7B ج.م',en:'EGP 4.7B',de:'EGP 4,7B'},c:'#a5b4fc'},
+    {l:{ar:'✅ SOM',en:'✅ SOM',de:'✅ SOM'},v:{ar:'800M ج.م',en:'EGP 800M',de:'EGP 800M'},c:'var(--sl)'},
+  ];
+  el.innerHTML=rows.map(r=>`<div class="stat-row"><span class="stat-label">${r.l[lang]||r.l.ar}</span><span class="stat-val" style="color:${r.c}">${r.v[lang]||r.v.ar}</span></div>`).join('');
+}
+
+function renderNotifs(){
+  ['npMob','npDesk'].forEach(id=>{
+    const el=document.getElementById(id); if(!el) return;
+    el.innerHTML=`<div class="np-hdr"><span>${lang==='ar'?'الإشعارات':lang==='de'?'Benachrichtigungen':'Notifications'}</span><span class="pill p-re" style="font-size:9.5px">3</span></div>`+
+    DATA.notifications.map(n=>`<div class="np-item"><div class="np-title">${lang==='ar'?n.ar_t:lang==='de'?n.de_t:n.en_t}</div><div class="np-sub">${lang==='ar'?n.ar_s:lang==='de'?n.de_s:n.en_s}</div><div class="np-time">${lang==='ar'?n.time_ar:lang==='de'?n.time_de:n.time_en}</div></div>`).join('');
+  });
+}
+
+function drawOverviewCharts(){
+  const p=cv('--p'),pl=cv('--pl'),s=cv('--s'),sl=cv('--sl'),a=cv('--a'),pu=cv('--pu'),cy=cv('--cy'),txm=cv('--txm'),txd=cv('--txd'),br=cv('--br');
+  const coNames=DATA.companies.slice(0,8).map(c=>nm(c).split(' ').slice(0,2).join(' '));
+  mkChart('cMarketShare',{type:'bar',data:{labels:coNames,datasets:[{data:[22,18,14,11,9,7,5,14],backgroundColor:[p+'cc',s+'cc',a+'cc',pu+'cc',cy+'cc','rgba(100,116,139,.7)','rgba(100,116,139,.6)','rgba(100,116,139,.5)'],borderRadius:5,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw}%`}}},scales:{x:gO(),y:{...gO(),max:28,ticks:{...gO().ticks,callback:v=>v+'%'}}}}});
+  mkChart('cTrend',{type:'line',data:{labels:months(),datasets:[{label:lang==='ar'?'الإعلانات':'Ads',data:[180,195,210,240,265,250,290,310,280,320,340,342],borderColor:pl,backgroundColor:pl+'18',tension:.4,fill:true,pointRadius:3},{label:lang==='ar'?'استفسارات':'Inquiries',data:[120,140,155,170,190,185,210,230,215,245,260,275],borderColor:sl,backgroundColor:sl+'10',tension:.4,fill:true,pointRadius:3,borderDash:[5,3]}]},options:{responsive:true,plugins:{legend:lO()},scales:{x:gO(),y:gO()}}});
+  const eqL=lang==='ar'?['حفارات','لودرات','رافعات','بلدوزرات','أخرى']:lang==='de'?['Bagger','Lader','Krane','Bulldozer','Andere']:['Excavators','Loaders','Cranes','Bulldozers','Other'];
+  mkChart('cEquip',{type:'doughnut',data:{labels:eqL,datasets:[{data:[35,28,18,12,7],backgroundColor:[p,s,a,pu,cy],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'62%'}});
+  mkChart('cBrands',{type:'doughnut',data:{labels:['CAT','Komatsu','XCMG',lang==='ar'?'فولفو':'Volvo','Liebherr',lang==='ar'?'أخرى':'Other'],datasets:[{data:[28,22,20,12,10,8],backgroundColor:[a,pl,pu,s,cy,'rgba(100,116,139,.7)'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'62%'}});
+  const kwTop=DATA.keywords.slice(0,6);
+  mkChart('cTopKW',{type:'bar',data:{labels:kwTop.map(k=>nkw(k)),datasets:[{data:kwTop.map(k=>k.vol),backgroundColor:p+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  mkChart('cSocRadar',{type:'radar',data:{labels:['Facebook','Instagram','LinkedIn','YouTube','TikTok','Twitter'],datasets:[{label:nm(DATA.companies[0]).split(' ')[0],data:[95,60,70,80,40,30],borderColor:pl,backgroundColor:pl+'18',pointBackgroundColor:pl,borderWidth:2,pointRadius:3},{label:nm(DATA.companies[1]).split(' ')[0],data:[80,50,55,60,25,20],borderColor:sl,backgroundColor:sl+'10',pointBackgroundColor:sl,borderWidth:2,pointRadius:3,borderDash:[4,2]}]},options:{responsive:true,plugins:{legend:lO()},scales:{r:{grid:{color:br},ticks:{display:false,backdropColor:'transparent'},pointLabels:{color:txd,font:{size:10}},angleLines:{color:br}}}}});
+}
+
+/* ═══════════════════════════════════════════
+   MAP & HEALTH
+═══════════════════════════════════════════ */
+function renderMap(){
+  const c=DATA.regions;
+  mkChart('cRegions',{type:'bar',data:{labels:c.map(r=>lang==='ar'?r.ar:lang==='de'?r.de:r.en),datasets:[{data:c.map(r=>r.count),backgroundColor:cv('--p')+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  const rl=document.getElementById('regionList');
+  if(rl) rl.innerHTML=c.map(r=>`<div class="stat-row"><span class="stat-label">${lang==='ar'?r.ar:lang==='de'?r.de:r.en}</span><span class="stat-val">${r.count} ${lang==='ar'?'شركات':lang==='de'?'Firmen':'co.'}</span></div>`).join('');
+}
+
+function tamHTML(){
+  return `
+    <div class="tam-row"><div class="tam-lbl" style="color:var(--pl)">TAM</div><div style="flex:1"><div class="sbar"><div class="sbar-i sbar-bl" style="width:100%"></div></div></div><div class="tam-val" style="color:var(--pl)">${lang==='ar'?'14.2B ج.م':'EGP 14.2B'}</div></div>
+    <div class="tam-row"><div class="tam-lbl" style="color:var(--sl)">SAM</div><div style="flex:1"><div class="sbar"><div class="sbar-i sbar-gr" style="width:33%"></div></div></div><div class="tam-val" style="color:var(--sl)">${lang==='ar'?'4.7B ج.م':'EGP 4.7B'}</div></div>
+    <div class="tam-row"><div class="tam-lbl" style="color:var(--al)">SOM</div><div style="flex:1"><div class="sbar"><div class="sbar-i sbar-or" style="width:5.6%"></div></div></div><div class="tam-val" style="color:var(--al)">${lang==='ar'?'800M ج.م':'EGP 800M'}</div></div>`;
+}
+
+function renderHealth(){
+  const t1=document.getElementById('tamSection'), t2=document.getElementById('tamMrkt');
+  if(t1) t1.innerHTML=tamHTML(); if(t2) t2.innerHTML=tamHTML();
+  const drEl=document.getElementById('driversSection');
+  if(drEl) drEl.innerHTML=DATA.drivers.map(d=>`<div class="stat-row"><span class="stat-label">${lang==='ar'?d.ar:lang==='de'?d.de:d.en}</span><div style="display:flex;align-items:center;gap:7px"><div class="sbar" style="width:80px"><div class="sbar-i sbar-gr" style="width:${d.v}%"></div></div><span style="font-size:11px;color:var(--sl);font-weight:700">${d.v}%</span></div></div>`).join('');
+  mkChart('cGrowthMini',{type:'line',data:{labels:['2020','2021','2022','2023','2024','2025','2026e'],datasets:[{data:[2.8,3.1,3.4,3.9,4.2,4.7,5.5],borderColor:cv('--sl'),backgroundColor:cv('--sl')+'18',tension:.4,fill:true,pointRadius:3}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:{...gO(),ticks:{...gO().ticks,callback:v=>v+'B'}}}}});
+}
+
+/* ═══════════════════════════════════════════
+   COMPETITORS
+═══════════════════════════════════════════ */
+function renderCompetitors(){
+  renderCoKPIs(); filterCo();
+  // Populate compare selectors
+  ['cmpA','cmpB'].forEach(id=>{ const s=document.getElementById(id); if(s){ s.innerHTML=DATA.companies.map((c,i)=>`<option value="${c.id}"${i===1&&id==='cmpB'?' selected':''}>${nm(c)}</option>`).join(''); }});
+}
+
+function renderCoKPIs(){
+  const el=document.getElementById('coKPIs'); if(!el) return;
+  const d=DATA.companies;
+  const avgScore=Math.round(d.reduce((s,c)=>s+c.score,0)/d.length);
+  const totalBudget=d.reduce((s,c)=>s+c.monthly_budget,0);
+  const totalFol=d.reduce((s,c)=>s+c.fb_followers+c.ig_followers+c.yt_subs+c.li_followers,0);
+  el.innerHTML=[
+    {cls:'bl',ic:'🏢',val:d.length,label:lang==='ar'?'إجمالي الشركات':lang==='de'?'Gesamte Unternehmen':'Total Companies'},
+    {cls:'gr',ic:'📊',val:avgScore,label:lang==='ar'?'متوسط النقاط الرقمية':lang==='de'?'Ø Digitale Punkte':'Avg. Digital Score'},
+    {cls:'or',ic:'💰',val:(totalBudget/1000).toFixed(0)+'K '+( lang==='ar'?'ج.م':'EGP'),label:lang==='ar'?'إجمالي ميزانية الإعلانات':lang==='de'?'Gesamtbudget':'Total Ad Budget'},
+    {cls:'pu',ic:'👥',val:(totalFol/1000).toFixed(0)+'K',label:'Total Followers'},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div></div>`).join('');
+}
+
+function filterCo(){
+  const q=(document.getElementById('coSearch')?.value||'').toLowerCase();
+  const reg=document.getElementById('coRegion')?.value||'';
+  let arr=[...DATA.companies].filter(c=>(nm(c)+c.en+c.ar).toLowerCase().includes(q)&&(!reg||c.region===reg));
+  arr.sort((a,b)=>b[coSort]-a[coSort]);
+  renderCoGrid(arr);
+}
+
+function setSortCo(k,btn){
+  coSort=k;
+  document.querySelectorAll('#sp-competitors-list .ftag').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  filterCo();
+}
+
+function renderCoGrid(arr){
+  const el=document.getElementById('coGrid'); if(!el) return;
+  el.innerHTML=arr.map(c=>{
+    const ini=c.en.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    return `<div class="co-card" onclick="openCoModal('${c.id}')">
+      <div class="co-rank">#${c.rank}</div>
+      <div class="co-hdr"><div class="co-av">${ini}</div><div><div class="co-name">${nm(c)}</div><div class="co-city">${ncity(c)} · ${c.founded}</div></div></div>
+      <div class="co-stats">
+        <div class="co-stat"><div class="co-sv">${c.fleet_size}</div><div class="co-sl">${lang==='ar'?'معدة':lang==='de'?'Gerät':'Units'}</div></div>
+        <div class="co-stat"><div class="co-sv">${(( c.fb_followers+c.ig_followers)/1000).toFixed(1)}K</div><div class="co-sl">Social</div></div>
+        <div class="co-stat"><div class="co-sv">${c.rating}⭐</div><div class="co-sl">${lang==='ar'?'تقييم':'Rating'}</div></div>
+      </div>
+      <div class="co-score-row">
+        <span style="font-size:11px;color:var(--txm)">${lang==='ar'?'النقاط':lang==='de'?'Score':'Score'}</span>
+        <div style="flex:1"><div class="sbar"><div class="sbar-i sbar-bl" style="width:${c.score}%"></div></div></div>
+        <span class="co-sc-val">${c.score}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:9px">${c.brands.map(b=>`<span class="tag">${b}</span>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+function openCoModal(id){
+  const c=DATA.companies.find(x=>x.id===id); if(!c) return;
+  document.getElementById('coModalTitle').textContent=nm(c);
+  document.getElementById('coModalBody').innerHTML=`
+    <div class="g3" style="margin-bottom:14px">
+      ${[
+        [lang==='ar'?'المدينة':lang==='de'?'Stadt':'City', ncity(c)],
+        [lang==='ar'?'التأسيس':lang==='de'?'Gegründet':'Founded', c.founded],
+        [lang==='ar'?'الموظفون':lang==='de'?'Mitarbeiter':'Employees', c.employees],
+        [lang==='ar'?'الأسطول':lang==='de'?'Flotte':'Fleet', c.fleet_size+' '+(lang==='ar'?'معدة':'units')],
+        [lang==='ar'?'النقاط':'Score', `<span style="color:var(--pl);font-weight:900">${c.score}/100</span>`],
+        [lang==='ar'?'التقييم':lang==='de'?'Bewertung':'Rating', `<span style="color:var(--al)">${c.rating} ⭐ (${fmtN(c.reviews)})</span>`],
+      ].map(([l,v])=>`<div><div style="font-size:10.5px;color:var(--txd);margin-bottom:3px">${l}</div><div style="font-weight:700">${v}</div></div>`).join('')}
+    </div>
+    <div style="margin-bottom:12px"><div style="font-size:10.5px;color:var(--txd);margin-bottom:5px">${lang==='ar'?'العلامات التجارية':lang==='de'?'Marken':'Brands'}</div><div style="display:flex;flex-wrap:wrap;gap:5px">${c.brands.map(b=>`<span class="tag">${b}</span>`).join('')}</div></div>
+    <div class="g4">
+      ${[['📢',c.ads_count,t('nav-ads')],['💰',(c.monthly_budget/1000).toFixed(0)+'K','EGP/Mo'],['📱',((c.fb_followers+c.ig_followers)/1000).toFixed(0)+'K','Social'],['🔑',c.keywords_count,'Keywords']].map(([ic,v,l])=>`<div class="kpi bl" style="padding:12px;text-align:center"><div style="font-size:20px;margin-bottom:5px">${ic}</div><div style="font-size:20px;font-weight:900;color:var(--pl)">${v}</div><div style="font-size:10.5px;color:var(--txm);margin-top:3px">${l}</div></div>`).join('')}
+    </div>`;
+  document.getElementById('coModal').classList.add('open');
+}
+
+function renderCmpSel(){/* selectors already populated in renderCompetitors */}
+
+function doCmp(){
+  const idA=document.getElementById('cmpA')?.value, idB=document.getElementById('cmpB')?.value;
+  const A=DATA.companies.find(c=>c.id===idA), B=DATA.companies.find(c=>c.id===idB);
+  const el=document.getElementById('cmpResult'); if(!el||!A||!B) return;
+  const dims=['score','fleet_size','monthly_budget','keywords_count','rating','reviews','ads_count','employees'];
+  const dL={ar:['النقاط','الأسطول','الميزانية','الكلمات','التقييم','المراجعات','الإعلانات','الموظفون'],en:['Score','Fleet','Budget','Keywords','Rating','Reviews','Ads','Employees'],de:['Score','Flotte','Budget','Keywords','Bewertung','Bewertungen','Anzeigen','Mitarbeiter']};
+  const labels=dL[lang]||dL.ar;
+  el.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>${lang==='ar'?'البُعد':lang==='de'?'Dimension':'Dimension'}</th><th>${nm(A)}</th><th>${nm(B)}</th><th>${lang==='ar'?'الفائز':lang==='de'?'Gewinner':'Winner'}</th></tr></thead><tbody>`+
+  dims.map((d,i)=>`<tr><td class="td-b">${labels[i]}</td><td style="color:${A[d]>=B[d]?'var(--sl)':'var(--txm)'};font-weight:${A[d]>B[d]?700:400}">${fmtN(A[d]||0)}</td><td style="color:${B[d]>=A[d]?'var(--sl)':'var(--txm)'};font-weight:${B[d]>A[d]?700:400}">${fmtN(B[d]||0)}</td><td>${A[d]>B[d]?'🟢 '+nm(A).split(' ')[0]:B[d]>A[d]?'🟢 '+nm(B).split(' ')[0]:'🟡 '+(lang==='ar'?'متساوٍ':lang==='de'?'Unentschieden':'Tie')}</td></tr>`).join('')+
+  '</tbody></table></div>';
+}
+
+function renderCoCharts(){
+  const names=DATA.companies.map(c=>nm(c).split(' ').slice(0,2).join(' '));
+  mkChart('cDigPres',{type:'bar',data:{labels:names,datasets:[{data:DATA.companies.map(c=>c.score),backgroundColor:cv('--p')+'bb',borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:{...gO(),max:100}}}});
+  mkChart('cAdBudg',{type:'bar',data:{labels:names,datasets:[{data:DATA.companies.map(c=>c.monthly_budget),backgroundColor:cv('--a')+'bb',borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:{...gO(),ticks:{...gO().ticks,callback:v=>(v/1000)+'K'}}}}});
+  mkChart('cSocFol',{type:'bar',data:{labels:names,datasets:[{data:DATA.companies.map(c=>c.fb_followers+c.ig_followers+c.yt_subs+c.li_followers),backgroundColor:cv('--pu')+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{...gO(),ticks:{...gO().ticks,callback:v=>(v/1000).toFixed(0)+'K'}},y:gO()}}});
+  mkChart('cFleet',{type:'bar',data:{labels:names,datasets:[{data:DATA.companies.map(c=>c.fleet_size),backgroundColor:cv('--cy')+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+}
+
+/* ═══════════════════════════════════════════
+   KEYWORDS
+═══════════════════════════════════════════ */
+function renderKeywords(){
+  renderKwKPIs(); filterKW();
+}
+
+function renderKwKPIs(){
+  const el=document.getElementById('kwKPIs'); if(!el) return;
+  const opps=DATA.keywords.filter(k=>k.opp).length;
+  const avgVol=Math.round(DATA.keywords.reduce((s,k)=>s+k.vol,0)/DATA.keywords.length);
+  el.innerHTML=[
+    {cls:'bl',ic:'🔑',val:'990+',label:lang==='ar'?'كلمة مفتاحية محللة':'Keywords Analyzed'},
+    {cls:'gr',ic:'⭐',val:opps,label:lang==='ar'?'فرصة ذهبية':lang==='de'?'Goldene Chancen':'Golden Opportunities'},
+    {cls:'or',ic:'📊',val:fmtN(avgVol),label:lang==='ar'?'متوسط البحث/شهر':'Avg. Monthly Volume'},
+    {cls:'pu',ic:'💰',val:'4.2 EGP',label:'Avg. CPC'},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div></div>`).join('');
+}
+
+function filterKW(){
+  const q=(document.getElementById('kwSearch')?.value||'').toLowerCase();
+  const tp=document.getElementById('kwType')?.value||'';
+  const int=document.getElementById('kwIntent')?.value||'';
+  let arr=DATA.keywords.filter(k=>(nkw(k)+k.ar+k.en).toLowerCase().includes(q)&&(!tp||k.type===tp)&&(!int||k.intent===int)&&(!kwOppOnly||k.opp));
+  renderKwTable(arr);
+}
+
+function toggleKwOpp(btn){
+  kwOppOnly=!kwOppOnly;
+  btn.classList.toggle('active',kwOppOnly);
+  filterKW();
+}
+
+function renderKwTable(arr){
+  const hd=document.getElementById('kwHead'), bd=document.getElementById('kwBody'); if(!hd||!bd) return;
+  hd.innerHTML=[t('th_kw'),t('th_type'),t('th_vol'),t('th_cpc'),t('th_kd'),t('th_intent'),t('th_opp')].map(h=>`<th>${h}</th>`).join('');
+  const iC={transactional:'var(--sl)',informational:'var(--pl)',navigational:'var(--al)'};
+  bd.innerHTML=arr.slice(0,40).map(k=>`<tr>
+    <td class="td-b">${nkw(k)}</td>
+    <td><span class="pill ${k.type==='head'?'p-re':k.type==='body'?'p-bl':'p-gr'}">${k.type}</span></td>
+    <td>${fmtN(k.vol)}</td>
+    <td style="color:var(--al);font-weight:700">${k.cpc}</td>
+    <td><div style="display:flex;align-items:center;gap:5px"><div class="sbar" style="width:55px"><div class="sbar-i ${k.kd<40?'sbar-gr':k.kd<60?'sbar-or':'sbar-bl'}" style="width:${k.kd}%"></div></div><span style="font-size:10.5px;color:var(--txd)">${k.kd}</span></div></td>
+    <td style="color:${iC[k.intent]||'var(--txm)'};font-size:11px;font-weight:600">${k.intent}</td>
+    <td>${k.opp?`<span class="pill p-gr">⭐ ${lang==='ar'?'فرصة':lang==='de'?'Chance':'Opp.'}</span>`:'—'}</td>
+  </tr>`).join('');
+  const info=document.getElementById('kwInfo');
+  if(info) info.textContent=`${lang==='ar'?'عرض':'Showing'} ${Math.min(40,arr.length)} ${lang==='ar'?'من':'of'} ${arr.length}`;
+}
+
+function renderOpps(){
+  const el=document.getElementById('goldenList'); if(!el) return;
+  const opps=DATA.keywords.filter(k=>k.opp).sort((a,b)=>b.vol-a.vol);
+  el.innerHTML=`<div class="tbl-wrap"><table><thead><tr>${[t('th_kw'),t('th_vol'),t('th_cpc'),t('th_kd'),t('th_intent')].map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`+
+  opps.map(k=>`<tr><td class="td-b">${nkw(k)}</td><td>${fmtN(k.vol)}</td><td style="color:var(--al);font-weight:700">${k.cpc}</td><td><span class="pill ${k.kd<30?'p-gr':k.kd<50?'p-or':'p-re'}">${k.kd}</span></td><td>${k.intent}</td></tr>`).join('')+
+  '</tbody></table></div>';
+}
+
+function renderKwCharts(){
+  const topVol=[...DATA.keywords].sort((a,b)=>b.vol-a.vol).slice(0,10);
+  mkChart('cKwVol',{type:'bar',data:{labels:topVol.map(k=>nkw(k)),datasets:[{data:topVol.map(k=>k.vol),backgroundColor:cv('--p')+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  const ig={transactional:0,informational:0,navigational:0};
+  DATA.keywords.forEach(k=>ig[k.intent]=(ig[k.intent]||0)+1);
+  mkChart('cKwInt',{type:'doughnut',data:{labels:Object.keys(ig),datasets:[{data:Object.values(ig),backgroundColor:[cv('--sl'),cv('--pl'),cv('--al')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'60%'}});
+  const topCpc=[...DATA.keywords].sort((a,b)=>b.cpc-a.cpc).slice(0,8);
+  mkChart('cKwCpc',{type:'bar',data:{labels:topCpc.map(k=>nkw(k)),datasets:[{data:topCpc.map(k=>k.cpc),backgroundColor:cv('--a')+'bb',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  const tg={head:0,body:0,longtail:0};
+  DATA.keywords.forEach(k=>tg[k.type]=(tg[k.type]||0)+1);
+  mkChart('cKwTypes',{type:'doughnut',data:{labels:['Head','Body','Long Tail'],datasets:[{data:Object.values(tg),backgroundColor:[cv('--rd'),cv('--p'),cv('--s')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'60%'}});
+}
+
+/* ═══════════════════════════════════════════
+   ADS
+═══════════════════════════════════════════ */
+function renderAds(){
+  renderAdKPIs(); filterAd();
+  const sel=document.getElementById('adCo');
+  if(sel){ sel.innerHTML=`<option value="">${lang==='ar'?'كل الشركات':lang==='de'?'Alle Unternehmen':'All Companies'}</option>`+[...new Set(DATA.ads.map(a=>a.co_ar))].map(co=>`<option value="${co}">${co}</option>`).join(''); }
+}
+
+function renderAdKPIs(){
+  const el=document.getElementById('adKPIs'); if(!el) return;
+  el.innerHTML=[
+    {cls:'bl',ic:'📢',val:'342',label:lang==='ar'?'إعلان رقمي نشط':lang==='de'?'Aktive Anzeigen':'Active Digital Ads'},
+    {cls:'gr',ic:'💰',val:'578K',label:lang==='ar'?'ج.م إجمالي الإنفاق/شهر':'EGP/Month Total Spend'},
+    {cls:'or',ic:'👁️',val:'4.2M',label:lang==='ar'?'مشاهدة شهرية':lang==='de'?'Monatl. Impressionen':'Monthly Impressions'},
+    {cls:'pu',ic:'🖱️',val:'2.8%',label:'Avg. CTR'},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div></div>`).join('');
+}
+
+function filterAd(){
+  const q=(document.getElementById('adSearch')?.value||'').toLowerCase();
+  const plt=document.getElementById('adPlat')?.value||'';
+  const co=document.getElementById('adCo')?.value||'';
+  renderAdGrid(DATA.ads.filter(a=>(nad(a)+naco(a)+a.hl_ar+a.hl_en).toLowerCase().includes(q)&&(!plt||a.platform===plt)&&(!co||a.co_ar===co)));
+}
+
+function renderAdGrid(arr){
+  const el=document.getElementById('adGrid'); if(!el) return;
+  const pbar={Facebook:'fb',Instagram:'ig',Google:'go',YouTube:'yt',TikTok:'tt'};
+  el.innerHTML=arr.slice(0,12).map(a=>`<div class="ad-card">
+    <div class="ad-pbar ${pbar[a.platform]||''}"></div>
+    <div class="ad-body">
+      <div class="ad-meta"><span class="ad-co">${naco(a)}</span><span class="ad-plat">${a.platform}</span></div>
+      <div class="ad-hl">${nad(a)}</div>
+      <div class="ad-mets">
+        <div class="ad-met"><div class="ad-mv">${(a.imp/1000).toFixed(0)}K</div><div class="ad-ml">${lang==='ar'?'مشاهدة':'Views'}</div></div>
+        <div class="ad-met"><div class="ad-mv">${a.ctr}%</div><div class="ad-ml">CTR</div></div>
+        <div class="ad-met"><div class="ad-mv">${(a.budget/1000).toFixed(1)}K</div><div class="ad-ml">EGP/Mo</div></div>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function renderAdBudgets(){
+  const names=DATA.companies.slice(0,8).map(c=>nm(c).split(' ').slice(0,2).join(' '));
+  mkChart('cAdBudgBar',{type:'bar',data:{labels:names,datasets:[{data:DATA.companies.slice(0,8).map(c=>c.monthly_budget),backgroundColor:cv('--a')+'cc',borderRadius:5,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{...gO(),ticks:{...gO().ticks,callback:v=>(v/1000)+'K'}},y:gO()}}});
+  mkChart('cAdPlat',{type:'doughnut',data:{labels:['Facebook','Google','Instagram','YouTube','TikTok'],datasets:[{data:[55,29,10,5,1],backgroundColor:['#1877f2',cv('--p'),'#c13584','#f00','#000'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'60%'}});
+  const bw=document.getElementById('budgTable');
+  if(bw) bw.innerHTML=`<table><thead><tr><th>${lang==='ar'?'الشركة':'Company'}</th><th>Facebook</th><th>Google</th><th>Instagram</th><th>${lang==='ar'?'الإجمالي':'Total'}</th></tr></thead><tbody>`+DATA.companies.slice(0,8).map(c=>`<tr><td class="td-b">${nm(c).split(' ').slice(0,2).join(' ')}</td><td>${fmtN(Math.round(c.monthly_budget*.55))}</td><td>${fmtN(Math.round(c.monthly_budget*.29))}</td><td>${fmtN(Math.round(c.monthly_budget*.10))}</td><td style="font-weight:700;color:var(--pl)">${fmtN(c.monthly_budget)}</td></tr>`).join('')+'</tbody></table>';
+}
+
+function renderAdInsights(){
+  const el=document.getElementById('adInsights'); if(!el) return;
+  const ins=[
+    {ic:'📈',t:{ar:'أعلى CTR',en:'Highest CTR',de:'Höchstes CTR'},v:{ar:'4.5% على Google',en:'4.5% on Google',de:'4,5% auf Google'},c:'var(--sl)'},
+    {ic:'💰',t:{ar:'أكفأ منصة',en:'Most Efficient',de:'Effizienteste Plattform'},v:{ar:'TikTok — 0.33 ج.م/نقرة',en:'TikTok — EGP 0.33/click',de:'TikTok — EGP 0,33/Klick'},c:'var(--pl)'},
+    {ic:'🏆',t:{ar:'أعلى إنفاق',en:'Top Spender',de:'Höchste Ausgaben'},v:{ar:'مصر للمعدات — 85K ج.م',en:'Misr Equip — EGP 85K/Mo',de:'Misr Equip — EGP 85K/Mo'},c:'var(--al)'},
+    {ic:'📱',t:{ar:'المنصة الأولى',en:'Top Platform',de:'Beste Plattform'},v:{ar:'Facebook 54.7%',en:'Facebook 54.7%',de:'Facebook 54,7%'},c:'var(--pl)'},
+    {ic:'⏰',t:{ar:'أفضل وقت',en:'Best Time',de:'Beste Zeit'},v:{ar:'الثلاثاء 8–10 صباحاً',en:'Tuesday 8–10 AM',de:'Dienstag 8–10 Uhr'},c:'var(--sl)'},
+    {ic:'🎯',t:{ar:'أعلى ROI',en:'Best ROI',de:'Bestes ROI'},v:{ar:'إعلانات البحث — 3.8x',en:'Search Ads — 3.8x',de:'Suchanzeigen — 3,8x'},c:'var(--pu)'},
+  ];
+  el.innerHTML=ins.map(i=>`<div class="card"><div style="font-size:26px;margin-bottom:7px">${i.ic}</div><div style="font-size:11.5px;color:var(--txm);margin-bottom:3px">${i.t[lang]||i.t.ar}</div><div style="font-size:13.5px;font-weight:700;color:${i.c}">${i.v[lang]||i.v.ar}</div></div>`).join('');
+  mkChart('cAdTrend',{type:'line',data:{labels:months(),datasets:[{data:[180,195,210,240,265,250,290,310,280,320,340,342],borderColor:cv('--pl'),backgroundColor:cv('--pl')+'18',tension:.4,fill:true,pointRadius:3}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  mkChart('cAdTime',{type:'bar',data:{labels:lang==='ar'?['سبت','أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة']:['Sat','Sun','Mon','Tue','Wed','Thu','Fri'],datasets:[{data:[60,55,75,92,88,80,45],backgroundColor:cv('--s')+'bb',borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+}
+
+/* ═══════════════════════════════════════════
+   SOCIAL
+═══════════════════════════════════════════ */
+function renderSocial(){
+  renderSocKPIs(); renderPlatCards();
+  mkChart('cFolGrow',{type:'line',data:{labels:months(),datasets:[{label:'Facebook',data:[95,98,102,108,112,115,118,122,125,130,136,142],borderColor:'#1877f2',tension:.4,fill:false,pointRadius:2},{label:'Instagram',data:[18,20,22,24,25,26,27,28,29,30,32,34],borderColor:'#c13584',tension:.4,fill:false,pointRadius:2},{label:'YouTube',data:[28,30,32,34,36,37,38,39,40,41,42,44],borderColor:'#f00',tension:.4,fill:false,pointRadius:2}]},options:{responsive:true,plugins:{legend:lO()},scales:{x:gO(),y:{...gO(),ticks:{...gO().ticks,callback:v=>v+'K'}}}}});
+  mkChart('cEngRate',{type:'bar',data:{labels:DATA.companies.slice(0,8).map(c=>nm(c).split(' ').slice(0,2).join(' ')),datasets:[{data:[5.8,4.9,4.2,3.8,3.5,3.0,2.8,2.4],backgroundColor:cv('--s')+'cc',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false}},scales:{x:{...gO(),max:8,ticks:{...gO().ticks,callback:v=>v+'%'}},y:gO()}}});
+}
+
+function renderSocKPIs(){
+  const el=document.getElementById('socKPIs'); if(!el) return;
+  el.innerHTML=[
+    {cls:'bl',ic:'👥',val:'224K',label:lang==='ar'?'إجمالي المتابعين':'Total Followers'},
+    {cls:'gr',ic:'💬',val:'10,842',label:lang==='ar'?'منشور محلّل':lang==='de'?'Analysierte Beiträge':'Posts Analyzed'},
+    {cls:'or',ic:'💫',val:'4.7%',label:lang==='ar'?'متوسط التفاعل':'Avg. Engagement'},
+    {cls:'pu',ic:'👥',val:'115',label:lang==='ar'?'مجموعة مجتمعية':'Community Groups'},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div></div>`).join('');
+}
+
+function renderPlatCards(){
+  const el=document.getElementById('platCards'); if(!el) return;
+  const plats=[{n:'Facebook',ic:'📘',bg:'#1877f2',fol:'128K',er:'5.2%'},{n:'Instagram',ic:'📸',bg:'#c13584',fol:'34K',er:'6.8%'},{n:'LinkedIn',ic:'💼',bg:'#0077b5',fol:'18K',er:'3.4%'},{n:'YouTube',ic:'▶️',bg:'#f00',fol:'44K',er:'2.9%'}];
+  el.innerHTML=plats.map(p=>`<div class="soc-card"><div class="soc-hdr"><div class="soc-icon" style="background:${p.bg}22;color:${p.bg}">${p.ic}</div><div><div style="font-size:13.5px;font-weight:700">${p.n}</div></div></div><div class="soc-fol" style="color:${p.bg}">${p.fol}</div><div class="soc-er">${p.er} ER</div></div>`).join('');
+}
+
+function renderSocContent(){
+  const cL=lang==='ar'?['صور','فيديو','نصوص','كاروسيل']:lang==='de'?['Bilder','Video','Text','Karussell']:['Images','Video','Text','Carousel'];
+  mkChart('cContTypes',{type:'doughnut',data:{labels:cL,datasets:[{data:[45,30,15,10],backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'60%'}});
+  mkChart('cBestTimes',{type:'bar',data:{labels:lang==='ar'?['8ص','10ص','12ظ','2م','4م','6م','8م','10م']:['8am','10am','12pm','2pm','4pm','6pm','8pm','10pm'],datasets:[{data:[45,82,65,70,68,88,76,42],backgroundColor:cv('--p')+'bb',borderRadius:4,borderSkipped:false}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:gO(),y:gO()}}});
+  const hc=document.getElementById('hashCloud');
+  if(hc) hc.innerHTML=DATA.hashtags.map((h,i)=>`<span class="tag" style="font-size:${11+i%4}px">${h}</span>`).join('');
+}
+
+function renderSentiment(){
+  const el=document.getElementById('sentGrid'); if(!el) return;
+  el.innerHTML=DATA.companies.slice(0,6).map(c=>{
+    const pos=Math.floor(55+Math.random()*30),neg=Math.floor(10+Math.random()*15),neu=100-pos-neg;
+    return `<div class="card"><div style="font-size:12.5px;font-weight:700;margin-bottom:10px">${nm(c).split(' ').slice(0,2).join(' ')}</div>
+      <div style="display:flex;height:8px;border-radius:20px;overflow:hidden;margin-bottom:8px"><div style="background:var(--sl);width:${pos}%"></div><div style="background:var(--txd);width:${neu}%"></div><div style="background:var(--rl);width:${neg}%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:10.5px"><span style="color:var(--sl)">😊 ${pos}%</span><span style="color:var(--txd)">😐 ${neu}%</span><span style="color:var(--rl)">😠 ${neg}%</span></div>
+    </div>`;
+  }).join('');
+  mkChart('cSentDist',{type:'doughnut',data:{labels:[lang==='ar'?'إيجابي':lang==='de'?'Positiv':'Positive',lang==='ar'?'محايد':lang==='de'?'Neutral':'Neutral',lang==='ar'?'سلبي':lang==='de'?'Negativ':'Negative'],datasets:[{data:[62,24,14],backgroundColor:[cv('--sl'),cv('--txd'),cv('--rl')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'60%'}});
+  const rl=document.getElementById('reviewsList');
+  const reviews=['خدمة ممتازة وأسعار معقولة جداً.','Great equipment, fast delivery!','Ausgezeichneter Service, pünktliche Lieferung.','تأخر في التسليم لكن الجودة ممتازة.','Good quality, will use again.','Super Qualität, empfehlenswert!'];
+  if(rl) rl.innerHTML=reviews.map((r,i)=>`<div style="padding:9px 0;border-bottom:1px solid var(--br)"><div style="font-size:12.5px;color:var(--tx);margin-bottom:3px">${r}</div><div style="font-size:10.5px;color:var(--txd)">${DATA.companies[i%DATA.companies.length]?nm(DATA.companies[i%DATA.companies.length]):''} · ⭐${(4+Math.random()).toFixed(1)}</div></div>`).join('');
+}
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+function renderPricing(){
+  const hd=document.getElementById('priceHead'), bd=document.getElementById('priceBody');
+  if(hd) hd.innerHTML=[t('th_eq'),t('th_d'),t('th_w'),t('th_m'),t('th_q'),t('th_br'),t('th_tr')].map(h=>`<th>${h}</th>`).join('');
+  if(bd) bd.innerHTML=DATA.pricing.map(p=>`<tr>
+    <td class="td-b">${nprice(p)}</td>
+    <td style="color:var(--al);font-weight:800;font-size:14px">${fmtN(p.daily)}</td>
+    <td>${fmtN(p.weekly)}</td>
+    <td>${fmtN(p.monthly)}</td>
+    <td>${fmtN(p.quarterly)}</td>
+    <td><span class="tag">${p.brands}</span></td>
+    <td style="color:${p.trend.includes('-')?'var(--rl)':p.trend==='ثابت'?'var(--txm)':'var(--sl)'}">${p.trend}</td>
+  </tr>`).join('');
+}
+
+function buildCalc(){
+  const sel=document.getElementById('calcEquip'); if(!sel) return;
+  sel.innerHTML=DATA.pricing.map(p=>`<option value="${p.daily},${p.weekly},${p.monthly}">${nprice(p)}</option>`).join('');
+}
+
+function updateCalc(){
+  const days=parseInt(document.getElementById('calcDays')?.value||7);
+  const units=parseInt(document.getElementById('calcUnits')?.value||1);
+  document.getElementById('calcDaysVal').textContent=days;
+  document.getElementById('calcUnitsVal').textContent=units;
+  const selVal=(document.getElementById('calcEquip')?.value||'2800,17500,64000').split(',');
+  const daily=parseInt(selVal[0]||2800), weekly=parseInt(selVal[1]||17500), monthly=parseInt(selVal[2]||64000);
+  let cost,period;
+  if(days>=30){cost=Math.floor(days/30)*monthly+(days%30)*daily;period=lang==='ar'?'شهري':'monthly';}
+  else if(days>=7){cost=Math.floor(days/7)*weekly+(days%7)*daily;period=lang==='ar'?'أسبوعي':'weekly';}
+  else{cost=days*daily;period=lang==='ar'?'يومي':'daily';}
+  const total=cost*units;
+  const res=document.getElementById('calcResult'), brk=document.getElementById('calcBreak');
+  if(res) res.textContent=fmtN(total)+' '+(lang==='ar'?'ج.م':'EGP');
+  if(brk) brk.textContent=`${units} ${lang==='ar'?'وحدة':'unit(s)'} × ${days} ${lang==='ar'?'يوم':lang==='de'?'Tage':'days'} — ${period} ${lang==='ar'?'تسعير':'pricing'}`;
+  mkChart('cPriceTrend',{type:'line',data:{labels:lang==='ar'?['2021','2022','2023','2024','2025','2026']:['2021','2022','2023','2024','2025','2026'],datasets:[{label:lang==='ar'?'حفار 20ط':lang==='de'?'20T Bagger':'20T Excavator',data:[2100,2300,2500,2600,2750,2800],borderColor:cv('--pl'),tension:.4,fill:false,pointRadius:3},{label:lang==='ar'?'رافعة 50ط':lang==='de'?'50T Kran':'50T Crane',data:[4800,5200,5600,5900,6200,6500],borderColor:cv('--al'),tension:.4,fill:false,pointRadius:3}]},options:{responsive:true,plugins:{legend:lO()},scales:{x:gO(),y:{...gO(),ticks:{...gO().ticks,callback:v=>fmtN(v)}}}}});
+}
+
+function renderPriceCmp(){
+  const eqs=DATA.pricing.slice(0,5);
+  const cos=DATA.companies.slice(0,5);
+  mkChart('cPriceCmp',{type:'bar',data:{labels:eqs.map(p=>nprice(p)),datasets:cos.map((c,i)=>({label:nm(c).split(' ')[0],data:eqs.map(p=>Math.round(p.daily*(0.85+i*0.08))),backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu'),cv('--cy')][i]+'bb',borderRadius:4}))},options:{responsive:true,plugins:{legend:lO()},scales:{x:gO(),y:gO()}}});
+}
+
+/* ═══════════════════════════════════════════
+   MARKET
+═══════════════════════════════════════════ */
+function renderMarket(){
+  const t1=document.getElementById('tamMrkt'); if(t1) t1.innerHTML=tamHTML();
+  mkChart('cGeoDem',{type:'doughnut',data:{labels:DATA.regions.map(r=>lang==='ar'?r.ar:lang==='de'?r.de:r.en),datasets:[{data:DATA.regions.map(r=>r.count),backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu'),cv('--cy'),'rgba(100,116,139,.7)'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'right'}},cutout:'55%'}});
+}
+
+function renderMktSegments(){
+  const eqL=lang==='ar'?['حفارات','لودرات','رافعات','بلدوزرات','أخرى']:lang==='de'?['Bagger','Lader','Krane','Bulldozer','Andere']:['Excavators','Loaders','Cranes','Bulldozers','Other'];
+  mkChart('cEqDem',{type:'doughnut',data:{labels:eqL,datasets:[{data:[35,28,18,12,7],backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu'),cv('--cy')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'55%'}});
+  const secL=lang==='ar'?['إسكان','تجاري','بنية تحتية','طاقة','تعدين']:lang==='de'?['Wohnen','Gewerbe','Infrastruktur','Energie','Bergbau']:['Housing','Commercial','Infrastructure','Energy','Mining'];
+  mkChart('cSectDem',{type:'doughnut',data:{labels:secL,datasets:[{data:[30,22,28,12,8],backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu'),cv('--cy')],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'55%'}});
+  const boL=lang==='ar'?['أمريكي','ياباني','صيني','ألماني','كوري','أخرى']:lang==='de'?['Amerikanisch','Japanisch','Chinesisch','Deutsch','Koreanisch','Andere']:['American','Japanese','Chinese','German','Korean','Other'];
+  mkChart('cBrandOrig',{type:'doughnut',data:{labels:boL,datasets:[{data:[28,22,20,15,10,5],backgroundColor:[cv('--p'),cv('--s'),cv('--a'),cv('--pu'),cv('--cy'),'rgba(100,116,139,.7)'],borderWidth:0,hoverOffset:5}]},options:{responsive:true,plugins:{legend:{...lO(),position:'bottom'}},cutout:'55%'}});
+}
+
+function renderMktGrowth(){
+  mkChart('cMkGrow',{type:'line',data:{labels:['2020','2021','2022','2023','2024','2025','2026e','2027e','2028e'],datasets:[{label:lang==='ar'?'حجم السوق (مليار ج.م)':lang==='de'?'Marktgröße (Mrd. EGP)':'Market Size (Billion EGP)',data:[2.6,2.9,3.2,3.7,4.2,4.7,5.4,6.1,7.0],borderColor:cv('--pl'),backgroundColor:cv('--pl')+'18',tension:.4,fill:true,pointRadius:4,pointBackgroundColor:cv('--pl')}]},options:{responsive:true,plugins:{legend:lO()},scales:{x:gO(),y:{...gO(),ticks:{...gO().ticks,callback:v=>v+'B'}}}}});
+}
+
+/* ═══════════════════════════════════════════
+   REPORTS
+═══════════════════════════════════════════ */
+function renderReports(){
+  renderRepKPIs(); renderRepCoGrid();
+}
+
+function renderRepKPIs(){
+  const el=document.getElementById('repKPIs'); if(!el) return;
+  el.innerHTML=[
+    {cls:'bl',ic:'📄',val:'52',label:lang==='ar'?'تقرير شركة متاح':'Company Reports Available'},
+    {cls:'gr',ic:'📈',val:'8',label:lang==='ar'?'تقرير سوق متخصص':'Market Reports'},
+    {cls:'or',ic:'⚖️',val:'∞',label:lang==='ar'?'مقارنة مخصصة':'Custom Comparisons'},
+    {cls:'pu',ic:'🔄',val:lang==='ar'?'يومي':'Daily',label:lang==='ar'?'تحديث البيانات':'Data Updates'},
+  ].map(k=>`<div class="kpi ${k.cls}"><div class="kpi-icon">${k.ic}</div><div class="kpi-val">${k.val}</div><div class="kpi-label">${k.label}</div></div>`).join('');
+}
+
+function renderRepCoGrid(){
+  const el=document.getElementById('repCoGrid'); if(!el) return;
+  el.innerHTML=DATA.companies.map(c=>{
+    const ini=c.en.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+    return `<div class="co-card" onclick="genSingleReport('${c.id}')">
+      <div class="co-rank">#${c.rank}</div>
+      <div class="co-hdr"><div class="co-av">${ini}</div><div><div class="co-name">${nm(c)}</div><div class="co-city">${ncity(c)}</div></div></div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">${c.brands.map(b=>`<span class="tag">${b}</span>`).join('')}</div>
+      <div class="co-score-row">
+        <span style="font-size:11px;color:var(--txm)">Score</span>
+        <div style="flex:1"><div class="sbar"><div class="sbar-i sbar-bl" style="width:${c.score}%"></div></div></div>
+        <span class="co-sc-val">${c.score}</span>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:10px">
+        <button class="btn btn-p btn-sm" style="flex:1" onclick="event.stopPropagation();genSingleReport('${c.id}')">📄 ${lang==='ar'?'تقرير':lang==='de'?'Bericht':'Report'}</button>
+        <button class="btn btn-g btn-sm" onclick="event.stopPropagation();openCoModal('${c.id}')">👁️</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderMktReports(){
+  const el=document.getElementById('mktRepCards'); if(!el) return;
+  const reps=[
+    {ic:'📊',t:{ar:'تقرير السوق 2026',en:'Market Report 2026',de:'Marktbericht 2026'},d:{ar:'تحليل شامل لسوق المعدات الثقيلة في مصر',en:'Comprehensive analysis of Egypt heavy equipment market',de:'Umfassende Analyse des ägyptischen Schwermaschinensektors'},p:'85'},
+    {ic:'🔑',t:{ar:'تقرير الكلمات المفتاحية',en:'Keywords SEO Report',de:'Keywords-SEO-Bericht'},d:{ar:'990 كلمة مفتاحية محللة مع الفرص',en:'990 keywords analyzed with opportunities',de:'990 analysierte Keywords mit Chancen'},p:'72'},
+    {ic:'📢',t:{ar:'تقرير الإعلانات الرقمية',en:'Digital Ads Intelligence',de:'Digitale Anzeigen Intelligence'},d:{ar:'342 إعلان · 578K ج.م شهري',en:'342 ads · EGP 578K monthly',de:'342 Anzeigen · EGP 578K monatlich'},p:'68'},
+    {ic:'📱',t:{ar:'تقرير السوشيال ميديا',en:'Social Media Report',de:'Social-Media-Bericht'},d:{ar:'224K متابع · تحليل 115 مجموعة',en:'224K followers · 115 groups analyzed',de:'224K Follower · 115 Gruppen analysiert'},p:'61'},
+  ];
+  el.innerHTML=reps.map(r=>`<div class="card"><div style="font-size:28px;margin-bottom:10px">${r.ic}</div><div style="font-size:14px;font-weight:700;margin-bottom:6px">${r.t[lang]||r.t.ar}</div><div style="font-size:12px;color:var(--txm);margin-bottom:12px">${r.d[lang]||r.d.ar}</div><div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><div style="flex:1" class="sbar"><div class="sbar-i sbar-bl" style="width:${r.p}%"></div></div><span style="font-size:11px;color:var(--pl);font-weight:700">${r.p}%</span></div><button class="btn btn-p btn-sm" style="width:100%">⬇️ ${lang==='ar'?'تحميل التقرير':lang==='de'?'Bericht herunterladen':'Download Report'}</button></div>`).join('');
+}
+
+function renderBuilder(){
+  const el=document.getElementById('builderCos'); if(!el) return;
+  el.innerHTML=DATA.companies.map(c=>`<button class="ftag ${builderSelected.includes(c.id)?'active':''}" onclick="toggleBuilderCo('${c.id}',this)">${nm(c).split(' ').slice(0,2).join(' ')}</button>`).join('');
+  document.querySelectorAll('#sp-reports-build [data-dim]').forEach(btn=>{
+    btn.onclick=function(){this.classList.toggle('active');};
+  });
+}
+
+function toggleBuilderCo(id, btn){
+  const idx=builderSelected.indexOf(id);
+  if(idx>-1){builderSelected.splice(idx,1);btn.classList.remove('active');}
+  else if(builderSelected.length<5){builderSelected.push(id);btn.classList.add('active');}
+}
+
+function genReport(){
+  const el=document.getElementById('reportOut'); if(!el) return;
+  if(builderSelected.length===0){el.innerHTML=`<div style="color:var(--rl);font-size:12.5px">${lang==='ar'?'اختر شركة واحدة على الأقل':'Please select at least one company'}</div>`;return;}
+  const cos=builderSelected.map(id=>DATA.companies.find(c=>c.id===id)).filter(Boolean);
+  el.innerHTML=`<div class="tbl-wrap"><table><thead><tr><th>${lang==='ar'?'البُعد':'Metric'}</th>${cos.map(c=>`<th>${nm(c).split(' ')[0]}</th>`).join('')}</tr></thead><tbody>`+
+  ['score','fleet_size','monthly_budget','ads_count','fb_followers','keywords_count','rating'].map(d=>{
+    const l={score:lang==='ar'?'النقاط':'Score',fleet_size:lang==='ar'?'الأسطول':'Fleet',monthly_budget:'Budget (EGP)',ads_count:lang==='ar'?'الإعلانات':'Ads',fb_followers:'Facebook',keywords_count:'Keywords',rating:lang==='ar'?'التقييم':'Rating'};
+    const best=Math.max(...cos.map(c=>c[d]||0));
+    return `<tr><td class="td-b">${l[d]||d}</td>${cos.map(c=>`<td style="color:${(c[d]||0)===best?'var(--sl)':'var(--txm)'};font-weight:${(c[d]||0)===best?700:400}">${fmtN(c[d]||0)}</td>`).join('')}</tr>`;
+  }).join('')+
+  '</tbody></table></div><div style="margin-top:10px;font-size:11.5px;color:var(--txd)">'+new Date().toLocaleDateString(lang==='ar'?'ar-EG':lang==='de'?'de-DE':'en-US')+'</div>';
+}
+
+function genSingleReport(id){
+  gotoPage('reports');
+  subTab('reports','build',document.querySelector('[onclick*="reports\',\'build\'"]'));
+  setTimeout(()=>{
+    builderSelected=[id];
+    renderBuilder();
+    genReport();
+  },200);
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL SEARCH (SPOTLIGHT)
+═══════════════════════════════════════════ */
+function openSpotlight(){
+  document.getElementById('spotlight').classList.add('open');
+  setTimeout(()=>document.getElementById('spInput')?.focus(),80);
+  doSearch('');
+}
+function closeSpotlight(e){
+  if(!e||e.target===document.getElementById('spotlight')||e.target.classList.contains('sp-bg')) document.getElementById('spotlight').classList.remove('open');
+}
+
+function doSearch(q){
+  const el=document.getElementById('spList'); if(!el) return;
+  q=(q||'').toLowerCase().trim();
+  if(!q){ el.innerHTML=`<div class="sp-empty">${lang==='ar'?'ابدأ الكتابة للبحث...':lang==='de'?'Tippen Sie zum Suchen...':'Start typing to search...'}</div>`; return; }
+  const results=[];
+  DATA.companies.filter(c=>(nm(c)+c.en+c.ar).toLowerCase().includes(q)).slice(0,4).forEach(c=>results.push({icon:'🏢',name:nm(c),sub:ncity(c)+' · Score: '+c.score,cat:lang==='ar'?'شركة':'Company',action:()=>{gotoPage('competitors');setTimeout(()=>openCoModal(c.id),200);}}));
+  DATA.keywords.filter(k=>(nkw(k)+k.ar+k.en).toLowerCase().includes(q)).slice(0,4).forEach(k=>results.push({icon:'🔑',name:nkw(k),sub:`Vol: ${fmtN(k.vol)} · CPC: ${k.cpc} EGP · KD: ${k.kd}`,cat:'Keyword',action:()=>gotoPage('keywords')}));
+  DATA.ads.filter(a=>(nad(a)+naco(a)+a.hl_ar+a.hl_en).toLowerCase().includes(q)).slice(0,3).forEach(a=>results.push({icon:'📢',name:nad(a),sub:naco(a)+' · '+a.platform+' · CTR: '+a.ctr+'%',cat:lang==='ar'?'إعلان':'Ad',action:()=>gotoPage('ads')}));
+  DATA.pricing.filter(p=>(nprice(p)+p.ar+p.en).toLowerCase().includes(q)).slice(0,3).forEach(p=>results.push({icon:'💰',name:nprice(p),sub:fmtN(p.daily)+' '+(lang==='ar'?'ج.م/يوم':'EGP/day'),cat:lang==='ar'?'سعر':lang==='de'?'Preis':'Price',action:()=>gotoPage('pricing')}));
+  if(!results.length){el.innerHTML=`<div class="sp-empty">${lang==='ar'?'لا نتائج — جرب كلمة أخرى':lang==='de'?'Keine Ergebnisse':'No results found'}</div>`;return;}
+  el.innerHTML=results.map((r,i)=>`<div class="sp-item" onclick="(${r.action.toString()})();document.getElementById('spotlight').classList.remove('open')">
+    <span class="sp-icon">${r.icon}</span>
+    <div class="sp-info"><div class="sp-name">${r.name}</div><div class="sp-sub">${r.sub}</div></div>
+    <span class="sp-cat">${r.cat}</span>
+  </div>`).join('');
+}
+
+function spNav(e){
+  if(e.key==='Escape') document.getElementById('spotlight').classList.remove('open');
+}
+
+/* ═══ MODALS ═══ */
+function closeModal(id,e){
+  if(!e||e.target===document.getElementById(id)) document.getElementById(id).classList.remove('open');
+}
+function toggleNotif(e){
+  e.stopPropagation();
+  ['npMob','npDesk'].forEach(id=>{ const p=document.getElementById(id); if(p) p.classList.toggle('open'); });
+}
+document.addEventListener('click',()=>{ ['npMob','npDesk'].forEach(id=>{ const p=document.getElementById(id); if(p) p.classList.remove('open'); }); });
+
+/* ═══ SIDEBAR ═══ */
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('mobOverlay').classList.toggle('open'); }
+function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('mobOverlay').classList.remove('open'); }
+
+/* ═══ EXPORT ═══ */
+function exportPage(){
+  const d=new Date().toLocaleDateString(); const t=document.title;
+  alert(lang==='ar'?`تصدير "${t}" — ${d}\nسيتم إضافة ميزة التصدير الكاملة قريباً.`:lang==='de'?`Export "${t}" — ${d}\nVollständige Exportfunktion wird bald hinzugefügt.`:`Export "${t}" — ${d}\nFull export feature coming soon.`);
+}
+
+/* ═══ KEYBOARD SHORTCUTS ═══ */
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){ e.preventDefault(); openSpotlight(); }
+  if(e.key==='Escape'){ document.getElementById('spotlight').classList.remove('open'); document.querySelectorAll('.modal-ov').forEach(m=>m.classList.remove('open')); }
+});
+
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded',()=>{
+  // Restore settings
+  const sl=localStorage.getItem('bsmaLang')||'ar';
+  const st=localStorage.getItem('bsmaTheme')||'midnight';
+  document.documentElement.setAttribute('data-theme',st);
+  document.documentElement.setAttribute('data-lang',sl);
+  document.documentElement.setAttribute('lang',sl==='ar'?'ar':'en');
+  document.documentElement.setAttribute('dir',sl==='ar'?'rtl':'ltr');
+  // Activate correct buttons
+  document.querySelectorAll('.theme-btn').forEach(b=>{ if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+st+"'")) b.classList.add('active'); else b.classList.remove('active'); });
+  document.querySelectorAll('.lang-btn').forEach(b=>{ if(b.getAttribute('onclick')&&b.getAttribute('onclick').includes("'"+sl+"'")) b.classList.add('active'); else b.classList.remove('active'); });
+  lang=sl; theme=st;
+  applyT();
+  renderPage('overview');
+  // Spotlight placeholder
+  const sp=document.getElementById('spInput'); if(sp) sp.placeholder=t('spInput');
+  const gs=document.getElementById('gsInline'); if(gs) gs.placeholder=t('gsInline');
+});
+</script>
+</body>
+</html>
