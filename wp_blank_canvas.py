@@ -12,7 +12,7 @@ def debug_deploy():
     
     # مكون Tailwind أنيق جداً (البطاقة الذكية)
     content_html = """
-    <div class="flex items-center justify-center min-h-screen bg-slate-900 p-6">
+    <div class="flex items-center justify-center min-h-screen bg-black p-6">
       <div class="bg-white p-8 rounded-2xl shadow-xl max-w-sm w-full border-t-4 border-indigo-500">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">HSE City Alpha</h2>
         <p class="text-gray-600 leading-relaxed">تم التجريد بنجاح. هذا المحتوى يتم التحكم به كلياً عبر بايثون ولينكس.</p>
@@ -25,7 +25,7 @@ def debug_deploy():
     """
 
     payload = {
-        "title": "HSE Master Canvas",
+        "title": "HSE Autonomous City v2.0",
         "content": content_html,
         "status": "publish"
     }
