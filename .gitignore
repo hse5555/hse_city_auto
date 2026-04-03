@@ -1,0 +1,6 @@
+venv/
+light_env/
+__pycache__/
+*.txt
+*.log
+.DS_Store

@@ -1,0 +1,28 @@
+name: WP_Autonomous_Deployer
+
+on:
+  push:
+    branches: [ main ] # يعمل السكربت عند كل رفع للكود
+
+jobs:
+  deploy_to_wordpress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Requirements
+        run: pip install requests
+
+      - name: Execute Deployment Script
+        env:
+          # هنا يقرأ السكربت الأسرار التي وضعتها في Settings > Secrets
+          WP_USERNAME: ${{ secrets.WP_USERNAME }}
+          WP_PASSWORD: ${{ secrets.WP_PASSWORD }}
+          WP_URL: ${{ secrets.WP_URL }}
+        run: python3 wp_blank_canvas.py
