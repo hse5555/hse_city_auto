@@ -4,3 +4,5 @@ __pycache__/
 *.txt
 *.log
 .DS_Store
+*.py
+dashboard_v2.html
