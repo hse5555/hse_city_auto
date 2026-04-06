@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="midnight" data-lang="ar">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>بصمة رقمية v2 | سوق المعدات الثقيلة — مصر</title>
@@ -390,6 +391,35 @@ tbody tr:hover td{background:var(--tg);color:var(--tx)}
   .btn{font-size:11.5px;padding:6px 11px}
   .ptab{font-size:11.5px;padding:7px 11px}
 }
+</style>
+<script>
+  // إعداد كلمة المرور - يمكنك تغييرها هنا
+  const MASTER_KEY = "HESHAM_2026"; 
+
+  function checkAccess() {
+    const sessionActive = sessionStorage.getItem("isAuthorized");
+    if (sessionActive === "true") return;
+
+    const body = document.querySelector('body');
+    body.style.display = 'none'; // إخفاء المحتوى تماماً
+
+    const password = prompt("الوصول مقيد | أدخل كلمة المرور للدخول إلى بصمة إنتنترا الرقمية:");
+    
+    if (password === MASTER_KEY) {
+      sessionStorage.setItem("isAuthorized", "true");
+      body.style.display = 'block';
+    } else {
+      alert("عذراً، الوصول غير مصرح به.");
+      window.location.href = "https://github.com/hse5555"; // تحويل المتطفل لمكان آخر
+    }
+  }
+  
+  // التشغيل فور تحميل الصفحة
+  document.addEventListener("DOMContentLoaded", checkAccess);
+</script>
+<style>
+  /* ضمان عدم ظهور أي جزء من الصفحة قبل التأكد من الهوية */
+  body { display: none; }
 </style>
 </head>
 <body>
