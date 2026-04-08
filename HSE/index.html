@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head><title>Sovereign Zone</title></head>
-<body>
-    <h1>Welcome Hesham</h1>
-    <p>This is your Zero Trust protected area.</p>
-    <p>Last Sync: Wed Apr  8 22:59:41 EET 2026</p>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign Access Control</title>
+    <script>
+        // كلمة المرور السيادية - غيرها كما تحب
+        const MASTER_KEY = "HSE2026"; 
+        
+        function checkAccess() {
+            let pass = prompt("الوصول محمي. أدخل كلمة المرور السيادية:");
+            if (pass === MASTER_KEY) {
+                document.body.style.display = "block";
+            } else {
+                alert("دخول غير مصرح به!");
+                window.location.href = "https://google.com";
+            }
+        }
+    </script>
+</head>
+<body style="display:none;" onload="checkAccess()">
+    <h1>مرحباً بك يا مايسترو</h1>
+    <div style="background: #2d2d2d; color: white; padding: 20px; border-radius: 10px;">
+        <h3>هذه المنطقة محمية برمجياً الآن.</h3>
+        <p>تم المزامنة بتاريخ: Wed Apr 8 2026</p>
+    </div>
 </body>
 </html>
